@@ -82,7 +82,7 @@ user stories is as follows:
 	- Within the application the user should be able to see a list of all historical markers within Nashville
 	from the data provided.
 	- Open up the application and ensure that you can see all of the historical markers from the data.
-	If it appears that all of the markers are visible within the list then award 15 points
+	If it appears that all of the markers are visible within the list then award 20pts.
 
 1. (20pts) - As a tourist, I want to see all of my unvisited historical markers so I can view which
 	markers I have not seen yet. Evaluation process:
@@ -181,7 +181,7 @@ user stories is as follows:
 9. (20pts) - Downloads the historical marker list from data.nashville.gov - Evaluation process:
    - Checkout the source code for the application and find the locations in the code
       where it is downloading data from nashville.data.gov. If it is not downloading
-      data from data.nashville.gov, award 0pts, otherwise award 30pts. 
+      data from data.nashville.gov, award 0pts, otherwise award 20pts. 
       
 10. (25pts) - Uses a consistent code style and applies Java best practices - Evaluation process:
    - Checkout the source code for the application 
