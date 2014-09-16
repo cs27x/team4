@@ -1,10 +1,15 @@
 # NashPast
 
 ## People in Class on 9/16/2014
+
 Alex Meyer
+
 Taylor Beck
+
 Violetta Vylegzhanina
+
 Liyan Hou
+
 Monica Hedda
 
 ## Overview
@@ -38,8 +43,9 @@ markers I have already visited (0.5 hrs)
 location (which can also be where I currently am) so I can see historical markers near a place I
 am going to. (2 hrs)
 
-4. As a tourist, I want to choose the historical markers I want to add to the queue of places 
- to visit (in a certain order) so I can visit locations in a tour of markers (1 hrs)
+4. As a tourist, I want to view my queue of markers that I wanted to visit so I can see which
+markers I have in my queue and visit them in the order I want to by the order I decided for my 
+queue. (1 hrs)
 
 5. As a tourist, I want to be able to click on a historical marker and see the description,  
 location (lat/long), and address of that historical marker so I can see the interesting 
@@ -48,8 +54,9 @@ historical information related to that marker and its relative location on the m
 6. As a tourist, I want to be able to see where historical markers are on a map so I can view
 the relative location of all of them on the map of Nashville (2 hrs)
 
-7. As a tourist, I want to be able to edit my queue of locations to visit so I can change the
-order in which I visit locations. (1 hrs)
+7. As a tourist, I want to be able to edit (add, remove, rearrange) my queue of locations to visit so I can 
+add markers to visit, change the order in which I visit locations or remove markers from my list to visit. 
+(1 hrs)
    
 ## Possibly Helpful Technical Information
 
@@ -68,174 +75,122 @@ order in which I visit locations. (1 hrs)
 There are 350 total points for this application. The breakdown of these points to
 user stories is as follows:
 
-NEED TO DO
+0. (20pts) - As a tourist, I want to see a list of all historical markers so I can view interesting
+	historical locations in Nashville. Evaluation process:
+	- Use the historical marker data from https://data.nashville.gov/Culture/Historic-Markers/vk65-u7my
+	to find all the possible historical markers Nashville.
+	- Within the application the user should be able to see a list of all historical markers within Nashville
+	from the data provided.
+	- Open up the application and ensure that you can see all of the historical markers from the data.
+	If it appears that all of the markers are visible within the list then award 15 points
 
-0. (10pts) - As a resident of Nashville, I would like to be able to find 3 events in Nashville
-   parks and information about them so that I don't get bored. Evaluation process:
-   - Use the parks special event permit data from https://data.nashville.gov/Environment/Parks-Special-Events-Permits-Data-2014-/vygj-v677
-     to find a day that there are more than 3 events in Nashville.
-   - Open a browser to the GitHub repo for the project and view the README.md file. If
-     it includes instructions on how to run the application, follow the instructions 
-     to run the application and attempt to assess if the application has randomly chosen
-     3 events (e.g., there is no obvious selection of the first / last set of events, etc.).
-     If so, award 5pts. If not, award 0pts and continue to the next rubric.
-   - Use the parks special event permit data from https://data.nashville.gov/Environment/Parks-Special-Events-Permits-Data-2014-/vygj-v677
-     to find a day that there are less than 3 events in Nashville.
-   - Run the application and make sure that it prints out all of the possible events for
-     that day and doesn't crash. If it does, award 5pts.
-   
-1. (10pts) - As a resident of Nashville, I would like to be able to ask for an additional 3
-   random things to do if I don't like the first list of things so that I can find
-   something that I like. Evaluation process:
-   - Use the parks special event permit data from https://data.nashville.gov/Environment/Parks-Special-Events-Permits-Data-2014-/vygj-v677
-     to find a day that there are more than 3 events in Nashville.
-   - Open a browser to the GitHub repo for the project and view the README.md file. If
-     it includes instructions on how to run the application, follow the instructions 
-     to run the application 10 times or use the whatever facility is provided by
-     the application to generate additional things to do in order to get 10 sets
-     of random things to do. If at least 2 different sets of things to do are presented,
-     award 10pts. If you cannot figure out how to rerun or generate a new list of things
-     to do from the README.md file, award 0pts.
+1. (20pts) - As a tourist, I want to see all of my unvisited historical markers so I can view which
+	markers I have not seen yet. Evaluation process:
+	- Use the same historical marker data from above
+	- Should keep track of previously viewed marks by the user on the current device and should
+	store the data somewhere so it persists across uses of the app.
+	- User should only see markers they haven't visited yet.
+	- Open up the application and go to certain markers/mark certain markers as visited then check
+	the unvisited section to ensure none of the places visited are displayed in the list. If it doesn't
+	show them then award 10pts.
+	- Close the application after using it and reopen the app to ensure previously visited markers
+	are still not shown in the unvisited section of the app which means the data persisted across
+	uses. If it doesn't show them then award 10pts.
 
-   
-2. (20pts) - As someone with occasional engagements on the weekend, I would like to be able to
-   find 3 random events on a specific date so that I can find things to do on a day
-   that I have free time. Evaluation process:
-   - Use the parks special event permit data from https://data.nashville.gov/Environment/Parks-Special-Events-Permits-Data-2014-/vygj-v677
-     to find a day that there are more than 3 events in Nashville.
-   - Open a browser to the GitHub repo for the project and view the README.md file. If
-     it includes instructions on how to run the application and select a specific date
-     to find events on, follow the instructions 
-     to run the application with your chosen data and attempt to assess if the application 
-     chooses 3 events for that date. If so, award 10pts. 
-     If you cannot figure out how to run the application and specify a date for the
-     events to be chosen on or it doesn't work, award 0pts and continue to the next rubric.
-   - Run the application 2 additional times using different dates and ensure that each time
-     the appropriate events for that date are displayed. If this test is passed, 
-     award 10pts. 
-   
-3. (5pts) - As someone who hates looking for a place to park, I would like to be able to only
-   see 3 random events that will be easy to park at so I don't spend a lot of time
-   driving around looking for parking. Evaluation process:
-   - Use the parks special event permit data from https://data.nashville.gov/Environment/Parks-Special-Events-Permits-Data-2014-/vygj-v677
-     to find a day that has at least one event with more than 1000 people.
-   - Open a browser to the GitHub repo for the project and view the README.md file. If
-     it includes instructions on how to run the application and specify that only
-     events that are easy to park at should be chosen, follow the instructions 
-     to run the application with your chosen date and assess if the application 
-     only chooses events with an attendance under 1000 people. If this test is passed, 
-     award 5pts. 
-   
-4. (30pts) - As someone who is into exercise, I would like to be able to see 3 random events that 
-   involve some form of physical activity so that I can go to the event in place of my
-   daily workout. Evaluation process:
-   - Use the parks special event permit data from https://data.nashville.gov/Environment/Parks-Special-Events-Permits-Data-2014-/vygj-v677
-     to find a day that has at least one event that involves running or biking and the
-     words "run", "5K", "bike", or "race" in the title.
-   - Open a browser to the GitHub repo for the project and view the README.md file. If
-     it includes instructions on how to run the application and specify that only
-     events that involve exercise should be chosen, follow the instructions 
-     to run the application with your chosen date and assess if the application 
-     only chooses from the exercise events with the appropriate terms in the title. 
-     If this test is passed, award 30pts. 
-   
-5. (30pts) - As an inexperienced computer user, I would like to be able to go to a website that
-   shows me 3 random things to do on a specific date so that I don't have to download,
-   install, and run any software. Evaluation process:
-   - Open a browser to the GitHub repo for the project and view the README.md file. If
-     it includes a URL for accessing the service and you are able to browse to the service,
-     award 30pts. 
-   
-6. (20pts) - As a trip planner, I would like to be able to provide a series of dates and time blocks and
-   receive a possible itinerary listing 3 random things that could be done in each
-   day / time block so that I can create itineraries for Nashville tourists.  Evaluation process:
-   - Use the parks special event permit data from https://data.nashville.gov/Environment/Parks-Special-Events-Permits-Data-2014-/vygj-v677
-     to find 3 dates that have at least one event.
-   - Open a browser to the GitHub repo for the project and view the README.md file. If
-     it includes instructions on how to run the application and specify a block of
-     dates/times that things to do should be chosen for, follow the instructions 
-     to run the application with your chosen dates/times and assess if the application 
-     selects at least one event for each date/time block. 
-     If this test is passed, award 20pts. 
-   
-7. (40pts) - As a student without a car, I would like to be able to only see events that are taking
-   place at parks that are accessible via the bus system so that I can actually get to
-   the event. Evaluation process:
-   - Use the parks special event permit data from https://data.nashville.gov/Environment/Parks-Special-Events-Permits-Data-2014-/vygj-v677
-     to find a date that has at least 1 event that is not on the list of public bus
-     stops: https://data.nashville.gov/Transportation/Metro-Transit-Authority-Bus-Stops-Map-/869d-gy6r
-   - Open a browser to the GitHub repo for the project and view the README.md file. If
-     it includes instructions on how to run the application and specify that only events
-     accessible via the bus should be chosen, follow the instructions 
-     to run the application 20 times with the bus accessible option for your chosen date. 
-     If the application never selects your event that is not accessible via the bus,
-     award 40pts (is this really a good test for this...?). 
-   
-8. (20pts) - As someone with kids, I would like to be able to only see events that are at parks that
-   have playgrounds so that my kids don't get bored and need to go home. Evaluation process:
-   - Use the parks special event permit data from https://data.nashville.gov/Environment/Parks-Special-Events-Permits-Data-2014-/vygj-v677
-     to find a date that has at least 1 event that is at a park with a playground: 
-     http://data.nashville.gov/resource/n37w-5mq8.json
-   - Open a browser to the GitHub repo for the project and view the README.md file. If
-     it includes instructions on how to run the application and specify that only events
-     at parks with playgrounds should be chosen, follow the instructions 
-     to run the application 10 times for your chosen date. 
-     If the application only selects events that are at parks with playgrounds,
-     award 40pts. 
-   
-9. (20pts) - As someone with kids, I would like to be able to only see events that are at parks that
-   have restrooms so that I don't have to leave to take my kids to the bathroom. Evaluation process:
-   - Use the parks special event permit data from https://data.nashville.gov/Environment/Parks-Special-Events-Permits-Data-2014-/vygj-v677
-     to find a date that has at least 1 event that is at a park with a restroom: 
-     http://data.nashville.gov/resource/n37w-5mq8.json
-   - Open a browser to the GitHub repo for the project and view the README.md file. If
-     it includes instructions on how to run the application and specify that only events
-     at parks with restrooms should be chosen, follow the instructions 
-     to run the application 10 times for your chosen date. 
-     If the application only selects events that are at parks with restrooms,
-     award 20pts. 
-   
-10. (20pts) - As someone with a dog, I would like to be able to only see events that are at parks that
-   have dog parks so that I can take my dog with me. Evaluation process:
-   - Use the parks special event permit data from https://data.nashville.gov/Environment/Parks-Special-Events-Permits-Data-2014-/vygj-v677
-     to find a date that has at least 1 event that is at a park with a dog park: 
-     http://data.nashville.gov/resource/n37w-5mq8.json
-   - Open a browser to the GitHub repo for the project and view the README.md file. If
-     it includes instructions on how to run the application and specify that only events
-     at parks with dog parks should be chosen, follow the instructions 
-     to run the application 10 times for your chosen date. 
-     If the application only selects events that are at parks with dog parks,
-     award 20pts. 
-   
-11. (25pts) - As a new user of the things to do generator, I would like to be able to read a 
-    README.md file with complete instructions on how to obtain/access and run the application
-    so that I can use it. Evaluation process:
-   - Open a browser to the GitHub repository for the application
-   - If a README.md file is present and uses appropriate markdown, award 5pts.
-   - If the README.md file includes instructions on how to access/compile/run the application
-     on the web or locally, follow the instructions without doing anything that isn't 
-     explicitly described. If you are able to run the application, award 20pts.
+2. (20pts) - As a tourist, I want to see all of my visited historical markers so I can view which 
+	markers I have already visited. Evaluation process:
+	- Use the same historical marker data from above
+	- Should keep track of previously viewed markers by the user on the current device and should
+	store the data somewhere so it persists across uses of the app.
+	- User should only see markers they have previously visited.
+	- Open up the application and go to certain markers/mark certain markers as visited then check
+	previously visited section of the app and ensure the markers shown are only previously visited.
+	If so award 10pts. 
+	- Close the application after using it and reopen the app to ensure previously visited markers
+	are still shown in the previously visited list which means that data persisted across uses. If
+	so award 10pts.
+
+3. (50pts) - As a tourist, I want to see a list of all historical markers sorted by distance from a certain
+	location (which can also be where I currently am) so I can see historical markers near a place I
+	am going to. Evaluation process:
+	- Use same historical marker data from above
+	- Should use either current long/lat estimate of user location or the lat/long estimate of a
+	certain location they choose on a map or enter the address of to order the list of historical
+	markers by closest to either where the user is or where they pick on a map/enter address of
+	- Open the list of historical markers/closest location section of app and ensure that the
+	markers are ordered in the list by closest to current user location. If so award 25pts.
+	- Open list of historical markers/closest location section of app and choose a location on a map
+	and ensure that the markers are ordered in the list by closest to the user specified location.
+	If so award 25pts.
+
+4. (20pts) - As a tourist, I want to view my queue of markers that I wanted to visit so I can see which
+	markers I have in my queue and visit them in the order I want to by the order I decided for my 
+	queue. Evaluation process:
+	- Use only historical marker data from above
+	- Within the app should be able to view only historical markers that are in the user-specific queue
+	and they should be in the order defined by the user
+	- Open location in app where user's queued locations are and ensure that all items that the user
+	has added to their queue are there and that they are in the correct order defined by how the user
+	added/deleted/rearranged them. If so award 20pts
+
+5. (30pts) - As a tourist, I want to be able to click on a historical marker and see the description,  
+	location (lat/long), and address of that historical marker so I can see the interesting 
+	historical information related to that marker and its relative location on the map of Nashville. 
+	Evaluation process:
+	- Anywhere in the app where there is a list of historical markers (user marker queue, list) the user
+	should be able to click on a specific marker and it will open a page where generic information about
+	the historical marker is shown such as the description, location (lat/long), and address of the 
+	historical marker
+	- Open all locations in the app where there is a list of markers and click on multiple markers to 
+	ensure that it opens a page that is specific to that marker and provides the general information
+	associated with the marker (description, location, address). If so award 30pts.
+
+6. (50pts) - As a tourist, I want to be able to see where historical markers are on a map so I can view
+	the relative location of all of them on the map of Nashville. Evaluation process:
+	- Use same historical marker data as listed above.
+	- User should be able to open a map with all historical markers marked on the map
+	- Open the location in the app where user can view locations on a map and ensure that all markers
+	are somehow demonstrated on the map. If so award 50pts.
+
+7. (75pts) - As a tourist, I want to be able to edit (add, remove, rearrange) my queue of locations to visit 
+	so I can add markers to visit, change the order in which I visit locations, or remove markers from my list 
+	to visit. Evaluation process:
+	- Somewhere within the app where the user is either viewing a list of markers or the specific
+	information on one marker, the user should be able to add a specific historical marker to their
+	queue of markers to visit.
+	- Within the app where the user can view their queue the user should be able to remove markers from
+	their queue or rearrange the order of them.
+	- This queue should persist across app uses so if the app is closed the queue still exists.
+	- Open the location in the app where markers can be added to the user's queue and add multiple
+	locations to the queue. If you can see those markers in the user's queue in the app then award 15pts.
+	- Open the location in the app where the user can see their queue of markers and modify this queue by
+	removing items. Exit the queue area and go back and make sure the changes made still exist in the user
+	queue. If so award 15pts.
+	- Open the location in the app where the user can see their queue of markers and modify this queue by
+	rearranging items. Exit the queue area and go back and make sure the changes made still exist in the 
+	user queue. If so award 15pts.
+	- Do both of the above actions but close the app after adding/removing/rearranging and reopen the app
+	and ensure all changes still exist in the user queue. If so award 30pts.
      
-12. (20pts) - Uses the Jackson library to parse JSON - Evaluation process:
+8. (20pts) - Uses some library to parse JSON - Evaluation process:
    - Checkout the source code for the application and find the locations in the code
       where it is downloading data from nashville.data.gov. Check and see if it is
-     using the Jackson library's ObjectMapper to convert the JSON to objects. If so,
-     award 25pts.
+     using the a library to convert the JSON to objects. If so,
+     award 20pts.
      
-13. (30pts) - Downloads the special permit list from data.nashville.gov - Evaluation process:
+9. (20pts) - Downloads the historical marker list from data.nashville.gov - Evaluation process:
    - Checkout the source code for the application and find the locations in the code
       where it is downloading data from nashville.data.gov. If it is not downloading
       data from data.nashville.gov, award 0pts, otherwise award 30pts. 
       
-12. (50pts) - Uses a consistent code style and applies Java best practices - Evaluation process:
+10. (25pts) - Uses a consistent code style and applies Java best practices - Evaluation process:
    - Checkout the source code for the application 
    - If all classes are in packages with full lower case names, no non-alphanumeric 
      characters, and at least 2 dotted package components (e.g., "com.foo" vs. just "com"),
-     award 10pts.
+     award 5pts.
    - If all classes have only private member variables that are accessed from other classes
-     via getter/setter methods, award 10pts.
-   - If all class names are title cased, award 10pts.
-   - If all classes have the same variable naming / spacing scheme, award 10pts.
+     via getter/setter methods, award 5pts.
+   - If all class names are title cased, award 5pts.
+   - If all classes have the same variable naming / spacing scheme, award 5pts.
    - If all methods have been broken up into code chunks of 15 lines or less, award
-     10pts
-
+     5pts
