@@ -76,7 +76,7 @@ There are 350 total points for this application. The breakdown of these points t
 user stories is as follows:
 
 0. (20pts) - As a tourist, I want to see a list of all historical markers so I can view interesting
-	historical locations in Nashville. Evaluation process:
+	historical locations in Nashville - Evaluation process:
 	- Use the historical marker data from https://data.nashville.gov/Culture/Historic-Markers/vk65-u7my
 	to find all the possible historical markers Nashville.
 	- Within the application the user should be able to see a list of all historical markers within Nashville
@@ -85,7 +85,7 @@ user stories is as follows:
 	If it appears that all of the markers are visible within the list then award 20pts.
 
 1. (20pts) - As a tourist, I want to see all of my unvisited historical markers so I can view which
-	markers I have not seen yet. Evaluation process:
+	markers I have not seen yet - Evaluation process:
 	- Use the same historical marker data from above
 	- Should keep track of previously viewed marks by the user on the current device and should
 	store the data somewhere so it persists across uses of the app.
@@ -98,7 +98,7 @@ user stories is as follows:
 	uses. If it doesn't show them then award 10pts.
 
 2. (20pts) - As a tourist, I want to see all of my visited historical markers so I can view which 
-	markers I have already visited. Evaluation process:
+	markers I have already visited - Evaluation process:
 	- Use the same historical marker data from above
 	- Should keep track of previously viewed markers by the user on the current device and should
 	store the data somewhere so it persists across uses of the app.
@@ -112,7 +112,7 @@ user stories is as follows:
 
 3. (50pts) - As a tourist, I want to see a list of all historical markers sorted by distance from a certain
 	location (which can also be where I currently am) so I can see historical markers near a place I
-	am going to. Evaluation process:
+	am going to - Evaluation process:
 	- Use same historical marker data from above
 	- Should use either current long/lat estimate of user location or the lat/long estimate of a
 	certain location they choose on a map or enter the address of to order the list of historical
@@ -125,7 +125,7 @@ user stories is as follows:
 
 4. (20pts) - As a tourist, I want to view my queue of markers that I wanted to visit so I can see which
 	markers I have in my queue and visit them in the order I want to by the order I decided for my 
-	queue. Evaluation process:
+	queue - Evaluation process:
 	- Use only historical marker data from above
 	- Within the app should be able to view only historical markers that are in the user-specific queue
 	and they should be in the order defined by the user
@@ -135,7 +135,7 @@ user stories is as follows:
 
 5. (30pts) - As a tourist, I want to be able to click on a historical marker and see the description,  
 	location (lat/long), and address of that historical marker so I can see the interesting 
-	historical information related to that marker and its relative location on the map of Nashville. 
+	historical information related to that marker and its relative location on the map of Nashville - 
 	Evaluation process:
 	- Anywhere in the app where there is a list of historical markers (user marker queue, list) the user
 	should be able to click on a specific marker and it will open a page where generic information about
@@ -146,7 +146,7 @@ user stories is as follows:
 	associated with the marker (description, location, address). If so award 30pts.
 
 6. (50pts) - As a tourist, I want to be able to see where historical markers are on a map so I can view
-	the relative location of all of them on the map of Nashville. Evaluation process:
+	the relative location of all of them on the map of Nashville - Evaluation process:
 	- Use same historical marker data as listed above.
 	- User should be able to open a map with all historical markers marked on the map
 	- Open the location in the app where user can view locations on a map and ensure that all markers
@@ -154,7 +154,7 @@ user stories is as follows:
 
 7. (75pts) - As a tourist, I want to be able to edit (add, remove, rearrange) my queue of locations to visit 
 	so I can add markers to visit, change the order in which I visit locations, or remove markers from my list 
-	to visit. Evaluation process:
+	to visit - Evaluation process:
 	- Somewhere within the app where the user is either viewing a list of markers or the specific
 	information on one marker, the user should be able to add a specific historical marker to their
 	queue of markers to visit.
