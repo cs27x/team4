@@ -47,6 +47,8 @@ am going to. (2 hrs)
 markers I have in my queue and visit them in the order I want to by the order I decided for my 
 queue. (1 hrs)
 
+**Removed following user stories as per the accepted requirement changes requested by the team implementing it -
+
 5. As a tourist, I want to be able to click on a historical marker and see the description,  
 location (lat/long), and address of that historical marker so I can see the interesting 
 historical information related to that marker and its relative location on the map of Nashville (1.5 hrs)
@@ -133,26 +135,7 @@ user stories is as follows:
 	has added to their queue are there and that they are in the correct order defined by how the user
 	added/deleted/rearranged them. If so award 20pts
 
-5. (30pts) - As a tourist, I want to be able to click on a historical marker and see the description,  
-	location (lat/long), and address of that historical marker so I can see the interesting 
-	historical information related to that marker and its relative location on the map of Nashville - 
-	Evaluation process:
-	- Anywhere in the app where there is a list of historical markers (user marker queue, list) the user
-	should be able to click on a specific marker and it will open a page where generic information about
-	the historical marker is shown such as the description, location (lat/long), and address of the 
-	historical marker
-	- Open all locations in the app where there is a list of markers and click on multiple markers to 
-	ensure that it opens a page that is specific to that marker and provides the general information
-	associated with the marker (description, location, address). If so award 30pts.
-
-6. (50pts) - As a tourist, I want to be able to see where historical markers are on a map so I can view
-	the relative location of all of them on the map of Nashville - Evaluation process:
-	- Use same historical marker data as listed above.
-	- User should be able to open a map with all historical markers marked on the map
-	- Open the location in the app where user can view locations on a map and ensure that all markers
-	are somehow demonstrated on the map. If so award 50pts.
-
-7. (75pts) - As a tourist, I want to be able to edit (add, remove, rearrange) my queue of locations to visit 
+5. (75pts) - As a tourist, I want to be able to edit (add, remove, rearrange) my queue of locations to visit 
 	so I can add markers to visit, change the order in which I visit locations, or remove markers from my list 
 	to visit - Evaluation process:
 	- Somewhere within the app where the user is either viewing a list of markers or the specific
@@ -172,18 +155,18 @@ user stories is as follows:
 	- Do both of the above actions but close the app after adding/removing/rearranging and reopen the app
 	and ensure all changes still exist in the user queue. If so award 30pts.
      
-8. (20pts) - Uses some library to parse JSON - Evaluation process:
+6. (20pts) - Uses some library to parse JSON - Evaluation process:
    - Checkout the source code for the application and find the locations in the code
       where it is downloading data from nashville.data.gov. Check and see if it is
      using the a library to convert the JSON to objects. If so,
      award 20pts.
      
-9. (20pts) - Downloads the historical marker list from data.nashville.gov - Evaluation process:
+7. (20pts) - Downloads the historical marker list from data.nashville.gov - Evaluation process:
    - Checkout the source code for the application and find the locations in the code
       where it is downloading data from nashville.data.gov. If it is not downloading
       data from data.nashville.gov, award 0pts, otherwise award 20pts. 
       
-10. (50pts) - Uses a consistent code style and applies Java best practices - Evaluation process:
+8. (50pts) - Uses a consistent code style and applies Java best practices - Evaluation process:
    - Checkout the source code for the application 
    - If all classes are in packages with full lower case names, no non-alphanumeric 
      characters, and at least 2 dotted package components (e.g., "com.foo" vs. just "com"),
@@ -198,3 +181,25 @@ user stories is as follows:
    - If class members are ordered by scope, award 5pts.
    - If no empty catch blocks that suppress exceptions, award 10pts.
    - If no class is more than about 300 lines long, award 5pts.
+
+**Removed following  Evaluation Rubrics as per the accepted requirement changes requested by the team implementing it -
+
+1. (30pts) - As a tourist, I want to be able to click on a historical marker and see the description,  
+	location (lat/long), and address of that historical marker so I can see the interesting 
+	historical information related to that marker and its relative location on the map of Nashville - 
+	Evaluation process:
+	- Anywhere in the app where there is a list of historical markers (user marker queue, list) the user
+	should be able to click on a specific marker and it will open a page where generic information about
+	the historical marker is shown such as the description, location (lat/long), and address of the 
+	historical marker
+	- Open all locations in the app where there is a list of markers and click on multiple markers to 
+	ensure that it opens a page that is specific to that marker and provides the general information
+	associated with the marker (description, location, address). If so award 30pts.
+
+2. (50pts) - As a tourist, I want to be able to see where historical markers are on a map so I can view
+	the relative location of all of them on the map of Nashville - Evaluation process:
+	- Use same historical marker data as listed above.
+	- User should be able to open a map with all historical markers marked on the map
+	- Open the location in the app where user can view locations on a map and ensure that all markers
+	are somehow demonstrated on the map. If so award 50pts.
+
