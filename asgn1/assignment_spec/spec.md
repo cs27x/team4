@@ -43,22 +43,22 @@ markers I have already visited (0.5 hrs)
 location (which can also be where I currently am) so I can see historical markers near a place I
 am going to. (2 hrs)
 
-4. As a tourist, I want to view my queue of markers that I wanted to visit so I can see which
+4. As a tourist, I want to view my queue of historical markers that I wanted to visit so I can see which historical
 markers I have in my queue and visit them in the order I want to by the order I decided for my 
 queue. (1 hrs)
 
+5. As a tourist, I want to be able to edit (add, remove, rearrange) my queue of historical markers to visit so I can 
+add historical markers to visit, change the order in which I visit them or remove historical markers from my list to visit. 
+(1 hrs)
+
 **Removed following user stories as per the accepted requirement changes requested by the team implementing it -
 
-5. As a tourist, I want to be able to click on a historical marker and see the description,  
+6. As a tourist, I want to be able to click on a historical marker and see the description,  
 location (lat/long), and address of that historical marker so I can see the interesting 
 historical information related to that marker and its relative location on the map of Nashville (1.5 hrs)
 
-6. As a tourist, I want to be able to see where historical markers are on a map so I can view
+7. As a tourist, I want to be able to see where historical markers are on a map so I can view
 the relative location of all of them on the map of Nashville (2 hrs)
-
-7. As a tourist, I want to be able to edit (add, remove, rearrange) my queue of locations to visit so I can 
-add markers to visit, change the order in which I visit locations or remove markers from my list to visit. 
-(1 hrs)
    
 ## Possibly Helpful Technical Information
 
@@ -117,16 +117,16 @@ user stories is as follows:
 	am going to - Evaluation process:
 	- Use same historical marker data from above
 	- Should use either current long/lat estimate of user location or the lat/long estimate of a
-	certain location they choose on a map or enter the address of to order the list of historical
-	markers by closest to either where the user is or where they pick on a map/enter address of
+	certain location they enter the address of to order the list of historical
+	markers by closest to either where the user is or where they enter address of
 	- Open the list of historical markers/closest location section of app and ensure that the
 	markers are ordered in the list by closest to current user location. If so award 25pts.
-	- Open list of historical markers/closest location section of app and choose a location on a map
+	- Open list of historical markers/closest location section of app and enter the address of a location
 	and ensure that the markers are ordered in the list by closest to the user specified location.
 	If so award 25pts.
 
-4. (20pts) - As a tourist, I want to view my queue of markers that I wanted to visit so I can see which
-	markers I have in my queue and visit them in the order I want to by the order I decided for my 
+4. (20pts) - As a tourist, I want to view my queue of historical markers that I wanted to visit so I can see which
+	historical markers I have in my queue and visit them in the order I want to by the order I decided for my 
 	queue - Evaluation process:
 	- Use only historical marker data from above
 	- Within the app should be able to view only historical markers that are in the user-specific queue
@@ -135,8 +135,8 @@ user stories is as follows:
 	has added to their queue are there and that they are in the correct order defined by how the user
 	added/deleted/rearranged them. If so award 20pts
 
-5. (75pts) - As a tourist, I want to be able to edit (add, remove, rearrange) my queue of locations to visit 
-	so I can add markers to visit, change the order in which I visit locations, or remove markers from my list 
+5. (75pts) - As a tourist, I want to be able to edit (add, remove, rearrange) my queue of historical markers to visit 
+	so I can add historical markers to visit, change the order in which I visit them, or remove historical markers from my list 
 	to visit - Evaluation process:
 	- Somewhere within the app where the user is either viewing a list of markers or the specific
 	information on one marker, the user should be able to add a specific historical marker to their
