@@ -70,11 +70,17 @@ public class EventListFragment extends ListFragment {
         eventAdapter = EventAdapter.getInstance(this.getActivity().getApplicationContext());
         setListAdapter(eventAdapter);
     }
+    
+    @Override
+    public void onResume() {
+    	super.onResume();
+    	// Update the data in the adapter whenever the list is viewed again.
+    	eventAdapter.updateData();
+    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         // Restore the previously serialized activated item position.
         if (savedInstanceState != null
                 && savedInstanceState.containsKey(STATE_ACTIVATED_POSITION)) {

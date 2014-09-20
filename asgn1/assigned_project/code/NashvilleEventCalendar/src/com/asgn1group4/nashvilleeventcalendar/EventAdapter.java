@@ -29,13 +29,30 @@ public class EventAdapter extends BaseAdapter {
 		this.mContext = context;
 		mInflate = (LayoutInflater) this.mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		this.mData = new ArrayList<Event>();
+		initializePossibleCategories();
 		loadData();
 	}
 	
-	// TODO needs implemented to get the data from the database
+	public void initializePossibleCategories() {
+		// Possible categories for events
+		categories.add("Other");
+		categories.add("Arts");
+		categories.add("Food and Drink");
+		categories.add("Music");
+		categories.add("Classes");
+		categories.add("Community");
+		categories.add("Parties");
+		categories.add("Technical");
+		categories.add("Networking");
+	}
+	
+	// TODO needs implemented to get the data from the database when the app opens.
 	public void loadData() {
+		// Can just call updateData to get all data from the database if implemented correctly
+		// Need database to handle the event id
 		// Start events at id 0
-		// id, title, address, description, dateTime
+		
+		// id, title, address, description, dateTime, category
 		mData.add(new Event("0", "Event0", "123 Road Rd Nashville, TN 37235", "Stuff stuff stuff Stuff stuff stuff Stuff stuff stuff Stuff " +
 				"stuff stuff Stuff stuff stuff Stuff stuff stuff Stuff stuff stuff Stuff stuff stuff Stuff stuff stuff Stuff stuff stuff",
 				"12/25/2014 9:00 AM", "Other"));
@@ -50,17 +67,12 @@ public class EventAdapter extends BaseAdapter {
 		mData.add(new Event("9", "Event9", "111 Road Rd Nashville, TN 37235", "Send-off party.", "1/2/2015 8:30 PM", "Parties"));
 		mData.add(new Event("10", "Event10", "678 Road Rd Nashville, TN 37235", "Graduation party", "10/22/2014 10:00 AM", "Parties"));
 		mData.add(new Event("11", "Event11", "999 Road Rd Nashville, TN 37235", "Trash pickup party", "12/19/2014 11:30 AM", "Community"));
+	}
+	
+	public void updateData() {
+		//TODO update the data from the database
 		
-		// Possible categories for events
-		categories.add("Other");
-		categories.add("Arts");
-		categories.add("Food and Drink");
-		categories.add("Music");
-		categories.add("Classes");
-		categories.add("Community");
-		categories.add("Parties");
-		categories.add("Technical");
-		categories.add("Networking");
+		this.notifyDataSetChanged();
 	}
 	
 	@Override
