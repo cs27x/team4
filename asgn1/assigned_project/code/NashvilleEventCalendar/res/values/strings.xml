@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Nashville Event Calendar</string>
+    <string name="title_event_detail">Event Information</string>
+    <string name="empty">Empty</string>
+    <string name="add_event_string">Add Event</string>
+    <string name="title_activity_add_event">Add Event</string>
+    <string name="action_settings">Settings</string>
+    <string name="hint_event_title">Event Title</string>
+    <string name="hint_event_location">Event Location Address</string>
+    <string name="hint_event_description">Event Description</string>
+    <string name="hint_event_date_time">Event Date and Time</string>
+    <string name="hint_event_category">Event Category</string>
+
+</resources>
