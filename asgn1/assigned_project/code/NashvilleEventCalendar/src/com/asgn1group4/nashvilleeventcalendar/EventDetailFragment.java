@@ -39,7 +39,7 @@ public class EventDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
         Bundle args = getArguments();
         if(args.containsKey(ARG_EVENT_ID)) {
-        	int event_id_to_index = Integer.parseInt(args.getString(ARG_EVENT_ID)) - 1;
+        	int event_id_to_index = Integer.parseInt(args.getString(ARG_EVENT_ID));
         	mEvent = EventAdapter.getInstance(this.getActivity().getApplicationContext())
         			.getItem(event_id_to_index);
         }
@@ -53,6 +53,10 @@ public class EventDetailFragment extends Fragment {
         // Show the dummy content as text in a TextView.
         if (mEvent != null) {
             ((TextView) rootView.findViewById(R.id.event_detail_title)).setText(mEvent.title);
+            ((TextView) rootView.findViewById(R.id.event_detail_category)).setText(mEvent.category);
+            ((TextView) rootView.findViewById(R.id.event_detail_location)).setText(mEvent.address);
+            ((TextView) rootView.findViewById(R.id.event_detail_date_time)).setText(mEvent.getFormattedDateTimeString());
+            ((TextView) rootView.findViewById(R.id.event_detail_num_people)).setText(Integer.toString(mEvent.numberGoing));
             ((TextView) rootView.findViewById(R.id.event_detail_description)).setText(mEvent.description);
         }
 

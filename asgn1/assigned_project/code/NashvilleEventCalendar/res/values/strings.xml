@@ -5,6 +5,7 @@
     <string name="title_event_detail">Event Information</string>
     <string name="empty">Empty</string>
     <string name="add_event_string">Add Event</string>
+    <string name="going_to_event_string">I\'m going!</string>
     <string name="title_activity_add_event">Add Event</string>
     <string name="action_settings">Settings</string>
     <string name="hint_event_title">Event Title</string>
@@ -12,5 +13,12 @@
     <string name="hint_event_description">Event Description</string>
     <string name="hint_event_date_time">Event Date and Time</string>
     <string name="hint_event_category">Event Category</string>
+    <string name="category">Category:</string>
+    <string name="where">Where:</string>
+    <string name="when">When:</string>
+    <string name="people_going">People going:</string>
+    <string name="description">Description:</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="not_a_valid_address">This is an invalid address</string>
 
 </resources>

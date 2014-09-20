@@ -1,12 +1,15 @@
 package com.asgn1group4.nashvilleeventcalendar;
 
-import com.example.nashvilleeventcalendar.R;
-
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import com.example.nashvilleeventcalendar.R;
 
 
 /**
@@ -19,7 +22,8 @@ import android.view.MenuItem;
  * more than a {@link EventDetailFragment}.
  */
 public class EventDetailActivity extends Activity {
-
+	private EventAdapter adapter;
+	private Event curEvent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +44,11 @@ public class EventDetailActivity extends Activity {
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
+        	String eventId = getIntent().getStringExtra(EventDetailFragment.ARG_EVENT_ID);
+        	adapter = EventAdapter.getInstance(this);
+        	curEvent = adapter.getItem(Integer.parseInt(eventId));
             Bundle arguments = new Bundle();
-            arguments.putString(EventDetailFragment.ARG_EVENT_ID,
-                    getIntent().getStringExtra(EventDetailFragment.ARG_EVENT_ID));
+            arguments.putString(EventDetailFragment.ARG_EVENT_ID, eventId);
             EventDetailFragment fragment = new EventDetailFragment();
             fragment.setArguments(arguments);
             getFragmentManager().beginTransaction()
@@ -55,16 +61,20 @@ public class EventDetailActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == android.R.id.home) {
-            // This ID represents the Home or Up button. In the case of this
-            // activity, the Up button is shown. Use NavUtils to allow users
-            // to navigate up one level in the application structure. For
-            // more details, see the Navigation pattern on Android Design:
-            //
-            // http://developer.android.com/design/patterns/navigation.html#up-vs-back
-            //
             NavUtils.navigateUpTo(this, new Intent(this, EventListActivity.class));
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+    
+    public void goingToEventButtonClick(View view) {
+    	((Button)view).setEnabled(false);
+    	curEvent.anotherUserGoing();
+    	((TextView)((View)view.getParent()).findViewById(R.id.event_detail_num_people))
+    		.setText(Integer.toString(curEvent.numberGoing));
+    	
+    	// TODO add database logic to increment number of people going
+    	
+    	adapter.notifyDataSetChanged();    	
     }
 }
