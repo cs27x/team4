@@ -3,7 +3,6 @@ package com.asgn1group4.nashvilleeventcalendar;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -19,7 +18,6 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.example.nashvilleeventcalendar.R;
 
