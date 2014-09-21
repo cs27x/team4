@@ -7,12 +7,6 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="19" />
-    
-    <uses-permission android:name="android.permission.INTERNET"/>
-    
-    <uses-feature
-        android:glEsVersion="0x00020000"
-        android:required="true"/>
 
     <application
         android:allowBackup="true"
@@ -30,8 +24,7 @@
         </activity>
         <activity
             android:name="com.asgn1group4.nashvilleeventcalendar.EventDetailActivity"
-            android:label="@string/title_event_detail"
-            android:parentActivityName="com.asgn1group4.nashvilleeventcalendar.EventListActivity" >
+            android:label="@string/title_event_detail" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.nashvilleeventcalendar.EventListActivity" />
@@ -42,20 +35,15 @@
         </activity>
         <activity
             android:name=".EventFilterActivity"
-            android:label="@string/title_activity_event_filter"
-            android:parentActivityName=".EventListActivity" >
+            android:label="@string/filter_event_activity_title" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="EventListActivity" />
         </activity>
         <activity
             android:name="com.asgn1group4.nashvilleeventcalendar.FilterEventListActivity"
-            android:label="@string/title_activity_filter_event_list" >
+            android:label="@string/filter_event_activity_title" >
         </activity>
-        
-        <meta-data
-            android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyA5IuTvTP_spFtdoQHfB7_1bbCgUTxtEcQ"/>
     </application>
 
 </manifest>
