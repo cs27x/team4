@@ -19,7 +19,7 @@ public class Event {
     public String category;
     public int numberGoing;
 
-    private static SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy h:mm aaa", Locale.US);
+    public static SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy h:mm aaa", Locale.US);
     
     // Date String must be in format "M/d/yyyy h:mm AM or PM"
     // "month/day/4-digit-year hour:minute AM-or-PM"

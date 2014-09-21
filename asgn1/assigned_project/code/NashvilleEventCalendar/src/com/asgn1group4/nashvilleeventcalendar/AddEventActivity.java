@@ -1,4 +1,4 @@
-package com.example.nashvilleeventcalendar;
+package com.asgn1group4.nashvilleeventcalendar;
 
 import java.util.Calendar;
 
@@ -12,8 +12,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 
-import com.asgn1group4.nashvilleeventcalendar.Event;
-import com.asgn1group4.nashvilleeventcalendar.EventAdapter;
+import com.example.nashvilleeventcalendar.R;
 
 public class AddEventActivity extends Activity {
 	private EventAdapter adapter = EventAdapter.getInstance(this);

@@ -2,8 +2,11 @@ package com.asgn1group4.nashvilleeventcalendar;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +38,7 @@ public class EventAdapter extends BaseAdapter implements Filterable {
 		this.mData = new ArrayList<Event>();
 		getFilter();
 		initializePossibleCategories();
-		loadData();
+		loadDataFromDatabase(true);
 	}
 	
 	public void initializePossibleCategories() {
@@ -52,8 +55,8 @@ public class EventAdapter extends BaseAdapter implements Filterable {
 	}
 	
 	// TODO needs implemented to get the data from the database when the app opens.
-	public void loadData() {
-		// Can just call updateData to get all data from the database if implemented correctly
+	public void loadDataFromDatabase(boolean update_view) {
+		mData.clear();
 		// Need database to handle the event id
 		// Start events at id 0
 		
@@ -72,10 +75,13 @@ public class EventAdapter extends BaseAdapter implements Filterable {
 		mData.add(new Event("9", "Event9", "111 Road Rd Nashville, TN 37235", "Send-off party.", "1/2/2015 8:30 PM", "Parties"));
 		mData.add(new Event("10", "Event10", "678 Road Rd Nashville, TN 37235", "Graduation party", "10/22/2014 10:00 AM", "Parties"));
 		mData.add(new Event("11", "Event11", "999 Road Rd Nashville, TN 37235", "Trash pickup party", "12/19/2014 11:30 AM", "Community"));
+		if(update_view)
+			this.notifyDataSetChanged();
 	}
 	
 	public void updateData() {
-		//TODO update the data from the database
+		//TODO update the data from the database, remove following line
+		//loadDataFromDatabase();
 		
 		this.notifyDataSetChanged();
 	}
@@ -126,22 +132,28 @@ public class EventAdapter extends BaseAdapter implements Filterable {
 
 		@Override
 		protected FilterResults performFiltering(CharSequence constraint) {
+			Log.d(this.getClass().getSimpleName(), "Filtering events.");
+			Log.d("TEST-FILTER CONSTRAINT", constraint.toString());
 			FilterResults result = new FilterResults();
 			if(constraint.length() == 0) {
 				result.values = mData;
 				result.count = mData.size();
 			} else {
-				ArrayList<Event> filteredEvents = new ArrayList<Event>();
+				ArrayList<Event> filteredEvents = new ArrayList<Event>(mData);
 				String constr_str = constraint.toString();
-				String[] filterTypeAndValue = constr_str.split("|");
+				Log.d("CONSTRAINT", constr_str);
+				String[] filterTypeAndValue = constr_str.split("\\|");
 				String filterType = filterTypeAndValue[0];
 				String filterValue =  filterTypeAndValue[1];
+				Log.d("FILTER TYPE AND VALUE", filterType + " " + filterValue);
 				if(filterType.equals("Category")) {
+					filteredEvents.clear();
 					for(Event e : mData) {
 						if(e.category.equals(filterValue))
 							filteredEvents.add(e);
 					}
-				} else if (filterType.equals("Date")) {
+				} else if (filterType.equals("By Date")) {
+					filteredEvents.clear();
 					Calendar dateToCompare = Calendar.getInstance();
 					dateToCompare.setTime(Event.getDateFromString(filterValue));
 					for(Event e : mData) {
@@ -150,12 +162,21 @@ public class EventAdapter extends BaseAdapter implements Filterable {
 							filteredEvents.add(e);
 						}
 					}
-				} else if (filterType.equals("Location")) {
-					// TODO need to filter values by location
-				} else {
-					result.values = mData;
-					result.count = mData.size();
+				} else if (filterType.equals("People Going")) {
+					Collections.copy(filteredEvents, mData);
+					Collections.sort(filteredEvents, new PeopleGoingComparator());
+				} else if (filterType.equals("Closest to Me")) {
+					Collections.copy(filteredEvents, mData);
+					Collections.sort(filteredEvents, new LocationComparator());
+					// TODO need to filter values by location, implement comparator, see below
+				} else if (filterType.equals("Reset Filters")) {
+					loadDataFromDatabase(false);
+					Log.d("MDATA TEST", mData.toString());
+					filteredEvents = new ArrayList<Event>(mData);
 				}
+				result.values = filteredEvents;
+				result.count = filteredEvents.size();
+				Log.d("RESULTS VALUES", filteredEvents.toString());
 			}
 			return result;
 		}
@@ -167,8 +188,27 @@ public class EventAdapter extends BaseAdapter implements Filterable {
 		protected void publishResults(CharSequence constraint,
 				FilterResults results) {
 			mData = (ArrayList<Event>) results.values;
+			Log.d("MDATA", mData.toString());
 			notifyDataSetChanged();
 		}
-		
+	}
+	
+	private class PeopleGoingComparator implements Comparator<Event> {
+		// return an integer < 0 if event1 val less than event2val, 
+		// 0 if they are equal, and > 0 if event1 val is greater than event2 val
+		@Override
+		public int compare(Event event1, Event event2) {
+			return event2.numberGoing - event1.numberGoing;
+		}
+	}
+	
+	private class LocationComparator implements Comparator<Event> {
+		// return an integer < 0 if event1 val less than event2val, 
+		// 0 if they are equal, and > 0 if event1 val is greater than event2 val
+		@Override
+		public int compare(Event event1, Event event2) {
+			// TODO Auto-generated method stub
+			return 0;
+		}
 	}
 }

@@ -44,7 +44,7 @@ public class EventListFragment extends ListFragment {
         /**
          * Callback for when an item has been selected.
          */
-        public void onItemSelected(Event event);
+        public void onItemSelected(int index);
     }
 
     /**
@@ -53,7 +53,7 @@ public class EventListFragment extends ListFragment {
      */
     private static Callbacks sEventCallbacks = new Callbacks() {
         @Override
-        public void onItemSelected(Event event) {
+        public void onItemSelected(int index) {
         }
     };
 
@@ -75,7 +75,10 @@ public class EventListFragment extends ListFragment {
     public void onResume() {
     	super.onResume();
     	// Update the data in the adapter whenever the list is viewed again.
-    	eventAdapter.updateData();
+    	if(!EventListActivity.filtered) {
+    		eventAdapter.updateData();
+    		EventListActivity.filtered = false;
+    	}
     }
 
     @Override
@@ -114,7 +117,7 @@ public class EventListFragment extends ListFragment {
 
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
-        mCallbacks.onItemSelected(eventAdapter.getItem(position));
+        mCallbacks.onItemSelected(position);
     }
 
     @Override

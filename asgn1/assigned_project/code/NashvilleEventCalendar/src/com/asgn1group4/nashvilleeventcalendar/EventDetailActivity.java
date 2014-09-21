@@ -44,11 +44,11 @@ public class EventDetailActivity extends Activity {
         if (savedInstanceState == null) {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
-        	String eventId = getIntent().getStringExtra(EventDetailFragment.ARG_EVENT_ID);
+        	int eventIndex = getIntent().getIntExtra(EventDetailFragment.ARG_EVENT_INDEX, 0);
         	adapter = EventAdapter.getInstance(this);
-        	curEvent = adapter.getItem(Integer.parseInt(eventId));
+        	curEvent = adapter.getItem(eventIndex);
             Bundle arguments = new Bundle();
-            arguments.putString(EventDetailFragment.ARG_EVENT_ID, eventId);
+            arguments.putInt(EventDetailFragment.ARG_EVENT_INDEX, eventIndex);
             EventDetailFragment fragment = new EventDetailFragment();
             fragment.setArguments(arguments);
             getFragmentManager().beginTransaction()

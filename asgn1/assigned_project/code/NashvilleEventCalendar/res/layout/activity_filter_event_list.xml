@@ -1,0 +1,55 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    	xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <Spinner
+                android:id="@+id/filter_option"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/filter_options" />
+            
+            <LinearLayout 
+                android:id="@+id/category_options"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="vertical" >
+                
+	           	<Spinner
+			        android:id="@+id/filter_event_category"
+			        android:layout_width="fill_parent"
+			        android:layout_height="wrap_content"
+			        android:prompt="@string/hint_event_category" />
+	           	                
+            </LinearLayout>
+            
+            <LinearLayout 
+                android:id="@+id/date_time_options"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="vertical" >
+                
+			    <DatePicker
+			        android:id="@+id/filter_event_date"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content" />
+	           	                
+            </LinearLayout>
+            
+           	<Button
+		        android:id="@+id/filter_events_done_button"
+		        android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:onClick="filterEventsDoneButtonClick"
+		        android:text="@string/done_string" />
+            
+        </LinearLayout>
+        
+</ScrollView>
