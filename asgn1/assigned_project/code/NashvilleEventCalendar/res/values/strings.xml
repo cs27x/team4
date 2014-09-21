@@ -20,7 +20,7 @@
     <string name="error_field_required">This field is required</string>
     <string name="not_a_valid_address">This is an invalid address</string>
     <string name="filter_events">Filter Events</string>
-    <string name="title_activity_filter_event_list">FilterEventListActivity</string>
+    <string name="filter_event_activity_title">Filter Events</string>
     <string name="hello_world">Hello world!</string>
     <string name="done_string">Done</string>
     
