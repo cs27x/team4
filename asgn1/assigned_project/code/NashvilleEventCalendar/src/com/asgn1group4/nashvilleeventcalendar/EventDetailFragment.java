@@ -20,7 +20,7 @@ public class EventDetailFragment extends Fragment {
      * The fragment argument representing the item ID that this fragment
      * represents.
      */
-	public static final String ARG_EVENT_ID = "event_id";
+	public static final String ARG_EVENT_INDEX = "event_index";
 
     /**
      * The dummy content this fragment is presenting.
@@ -38,10 +38,10 @@ public class EventDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle args = getArguments();
-        if(args.containsKey(ARG_EVENT_ID)) {
-        	int event_id_to_index = Integer.parseInt(args.getString(ARG_EVENT_ID));
+        if(args.containsKey(ARG_EVENT_INDEX)) {
+        	int index = args.getInt(ARG_EVENT_INDEX);
         	mEvent = EventAdapter.getInstance(this.getActivity().getApplicationContext())
-        			.getItem(event_id_to_index);
+        			.getItem(index);
         }
     }
 

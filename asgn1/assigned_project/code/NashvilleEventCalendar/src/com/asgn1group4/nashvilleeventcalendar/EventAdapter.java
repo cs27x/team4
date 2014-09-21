@@ -1,21 +1,28 @@
 package com.asgn1group4.nashvilleeventcalendar;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.example.nashvilleeventcalendar.R;
 
-public class EventAdapter extends BaseAdapter {
+public class EventAdapter extends BaseAdapter implements Filterable {
 	private static EventAdapter instance = null;
 	private LayoutInflater mInflate;
 	private Context mContext;
 	private ArrayList<Event> mData;
+	private EventFilter eventFilter;
 	
     public ArrayList<String> categories = new ArrayList<String>();
 	
@@ -29,13 +36,31 @@ public class EventAdapter extends BaseAdapter {
 		this.mContext = context;
 		mInflate = (LayoutInflater) this.mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		this.mData = new ArrayList<Event>();
-		loadData();
+		getFilter();
+		initializePossibleCategories();
+		loadDataFromDatabase(true);
 	}
 	
-	// TODO needs implemented to get the data from the database
-	public void loadData() {
+	public void initializePossibleCategories() {
+		// Possible categories for events
+		categories.add("Other");
+		categories.add("Arts");
+		categories.add("Food and Drink");
+		categories.add("Music");
+		categories.add("Classes");
+		categories.add("Community");
+		categories.add("Parties");
+		categories.add("Technical");
+		categories.add("Networking");
+	}
+	
+	// TODO needs implemented to get the data from the database when the app opens.
+	public void loadDataFromDatabase(boolean update_view) {
+		mData.clear();
+		// Need database to handle the event id
 		// Start events at id 0
-		// id, title, address, description, dateTime
+		
+		// id, title, address, description, dateTime, category
 		mData.add(new Event("0", "Event0", "123 Road Rd Nashville, TN 37235", "Stuff stuff stuff Stuff stuff stuff Stuff stuff stuff Stuff " +
 				"stuff stuff Stuff stuff stuff Stuff stuff stuff Stuff stuff stuff Stuff stuff stuff Stuff stuff stuff Stuff stuff stuff",
 				"12/25/2014 9:00 AM", "Other"));
@@ -50,17 +75,15 @@ public class EventAdapter extends BaseAdapter {
 		mData.add(new Event("9", "Event9", "111 Road Rd Nashville, TN 37235", "Send-off party.", "1/2/2015 8:30 PM", "Parties"));
 		mData.add(new Event("10", "Event10", "678 Road Rd Nashville, TN 37235", "Graduation party", "10/22/2014 10:00 AM", "Parties"));
 		mData.add(new Event("11", "Event11", "999 Road Rd Nashville, TN 37235", "Trash pickup party", "12/19/2014 11:30 AM", "Community"));
+		if(update_view)
+			this.notifyDataSetChanged();
+	}
+	
+	public void updateData() {
+		//TODO update the data from the database, remove following line
+		//loadDataFromDatabase();
 		
-		// Possible categories for events
-		categories.add("Other");
-		categories.add("Arts");
-		categories.add("Food and Drink");
-		categories.add("Music");
-		categories.add("Classes");
-		categories.add("Community");
-		categories.add("Parties");
-		categories.add("Technical");
-		categories.add("Networking");
+		this.notifyDataSetChanged();
 	}
 	
 	@Override
@@ -96,5 +119,96 @@ public class EventAdapter extends BaseAdapter {
 	public void addEvent(Event newEvent) {
 		this.mData.add(newEvent);
 		this.notifyDataSetChanged();
+	}
+
+	@Override
+	public Filter getFilter() {
+		if(eventFilter==null)
+			eventFilter = new EventFilter();
+		return eventFilter;
+	}
+	
+	private class EventFilter extends Filter {
+
+		@Override
+		protected FilterResults performFiltering(CharSequence constraint) {
+			Log.d(this.getClass().getSimpleName(), "Filtering events.");
+			Log.d("TEST-FILTER CONSTRAINT", constraint.toString());
+			FilterResults result = new FilterResults();
+			if(constraint.length() == 0) {
+				result.values = mData;
+				result.count = mData.size();
+			} else {
+				ArrayList<Event> filteredEvents = new ArrayList<Event>(mData);
+				String constr_str = constraint.toString();
+				Log.d("CONSTRAINT", constr_str);
+				String[] filterTypeAndValue = constr_str.split("\\|");
+				String filterType = filterTypeAndValue[0];
+				String filterValue =  filterTypeAndValue[1];
+				Log.d("FILTER TYPE AND VALUE", filterType + " " + filterValue);
+				if(filterType.equals("Category")) {
+					filteredEvents.clear();
+					for(Event e : mData) {
+						if(e.category.equals(filterValue))
+							filteredEvents.add(e);
+					}
+				} else if (filterType.equals("By Date")) {
+					filteredEvents.clear();
+					Calendar dateToCompare = Calendar.getInstance();
+					dateToCompare.setTime(Event.getDateFromString(filterValue));
+					for(Event e : mData) {
+						if(e.dateTime.get(Calendar.YEAR) == dateToCompare.get(Calendar.YEAR) 
+								&& e.dateTime.get(Calendar.DAY_OF_YEAR) == dateToCompare.get(Calendar.DAY_OF_YEAR)) {
+							filteredEvents.add(e);
+						}
+					}
+				} else if (filterType.equals("People Going")) {
+					Collections.copy(filteredEvents, mData);
+					Collections.sort(filteredEvents, new PeopleGoingComparator());
+				} else if (filterType.equals("Closest to Me")) {
+					Collections.copy(filteredEvents, mData);
+					Collections.sort(filteredEvents, new LocationComparator());
+					// TODO need to filter values by location, implement comparator, see below
+				} else if (filterType.equals("Reset Filters")) {
+					loadDataFromDatabase(false);
+					Log.d("MDATA TEST", mData.toString());
+					filteredEvents = new ArrayList<Event>(mData);
+				}
+				result.values = filteredEvents;
+				result.count = filteredEvents.size();
+				Log.d("RESULTS VALUES", filteredEvents.toString());
+			}
+			return result;
+		}
+
+		// I know I'm going to have an ArrayList of events so supressing warning
+		// rather than dealing with an ArrayList<?>
+		@SuppressWarnings("unchecked")
+		@Override
+		protected void publishResults(CharSequence constraint,
+				FilterResults results) {
+			mData = (ArrayList<Event>) results.values;
+			Log.d("MDATA", mData.toString());
+			notifyDataSetChanged();
+		}
+	}
+	
+	private class PeopleGoingComparator implements Comparator<Event> {
+		// return an integer < 0 if event1 val less than event2val, 
+		// 0 if they are equal, and > 0 if event1 val is greater than event2 val
+		@Override
+		public int compare(Event event1, Event event2) {
+			return event2.numberGoing - event1.numberGoing;
+		}
+	}
+	
+	private class LocationComparator implements Comparator<Event> {
+		// return an integer < 0 if event1 val less than event2val, 
+		// 0 if they are equal, and > 0 if event1 val is greater than event2 val
+		@Override
+		public int compare(Event event1, Event event2) {
+			// TODO Auto-generated method stub
+			return 0;
+		}
 	}
 }

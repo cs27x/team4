@@ -31,8 +31,20 @@
                 android:value="com.example.nashvilleeventcalendar.EventListActivity" />
         </activity>
         <activity
-            android:name=".AddEventActivity"
+            android:name="com.asgn1group4.nashvilleeventcalendar.AddEventActivity"
             android:label="@string/title_activity_add_event" >
+        </activity>
+        <activity
+            android:name=".EventFilterActivity"
+            android:label="@string/title_activity_event_filter"
+            android:parentActivityName=".EventListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="EventListActivity" />
+        </activity>
+        <activity
+            android:name="com.asgn1group4.nashvilleeventcalendar.FilterEventListActivity"
+            android:label="@string/title_activity_filter_event_list" >
         </activity>
     </application>
 

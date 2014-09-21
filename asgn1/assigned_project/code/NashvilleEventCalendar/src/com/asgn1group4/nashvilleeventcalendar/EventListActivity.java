@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.example.nashvilleeventcalendar.AddEventActivity;
 import com.example.nashvilleeventcalendar.R;
 
 /**
@@ -32,6 +31,7 @@ public class EventListActivity extends Activity
      * device.
      */
     private boolean mTwoPane;
+    public static boolean filtered = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,43 +51,20 @@ public class EventListActivity extends Activity
                     .findFragmentById(R.id.event_list))
                     .setActivateOnItemClick(true);
         }
-
-        // TODO: If exposing deep links into your app, handle intents here.
     }
-    
-    // TODO add option to filter by category, people going, time
-    /*
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.add_event, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}*/
 
     /**
      * Callback method from {@link EventListFragment.Callbacks}
      * indicating that the item with the given ID was selected.
      */
     @Override
-    public void onItemSelected(Event event) {
+    public void onItemSelected(int index) {
         if (mTwoPane) {
             // In two-pane mode, show the detail view in this activity by
             // adding or replacing the detail fragment using a
             // fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(EventDetailFragment.ARG_EVENT_ID, event.id);
+            arguments.putInt(EventDetailFragment.ARG_EVENT_INDEX, index);
             EventDetailFragment fragment = new EventDetailFragment();
             fragment.setArguments(arguments);
             getFragmentManager().beginTransaction()
@@ -97,13 +74,19 @@ public class EventListActivity extends Activity
             // In single-pane mode, simply start the detail activity
             // for the selected item ID.
             Intent detailIntent = new Intent(this, EventDetailActivity.class);
-            detailIntent.putExtra(EventDetailFragment.ARG_EVENT_ID, event.id);
+            detailIntent.putExtra(EventDetailFragment.ARG_EVENT_INDEX, index);
             startActivity(detailIntent);
         }
     }
     
     public void addEventButtonClick(View view) {
     	Intent intent = new Intent(this, AddEventActivity.class);
+    	startActivity(intent);
+    }
+    
+    public void filterEventButtonClick(View view) {
+    	filtered = true;
+    	Intent intent = new Intent(this, FilterEventListActivity.class);
     	startActivity(intent);
     }
 }
