@@ -12,7 +12,6 @@ import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TimePicker;
 
 import com.example.nashvilleeventcalendar.R;
 

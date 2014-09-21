@@ -6,6 +6,7 @@
     tools:context="com.example.nashvilleeventcalendar.EventDetailActivity" >
 
 	<LinearLayout
+	    android:id="@+id/event_detail_layout"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
 	    android:orientation="vertical" >

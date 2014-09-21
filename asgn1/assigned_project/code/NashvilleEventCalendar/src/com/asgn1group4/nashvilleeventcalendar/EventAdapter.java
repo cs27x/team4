@@ -133,7 +133,6 @@ public class EventAdapter extends BaseAdapter implements Filterable {
 		@Override
 		protected FilterResults performFiltering(CharSequence constraint) {
 			Log.d(this.getClass().getSimpleName(), "Filtering events.");
-			Log.d("TEST-FILTER CONSTRAINT", constraint.toString());
 			FilterResults result = new FilterResults();
 			if(constraint.length() == 0) {
 				result.values = mData;
@@ -141,11 +140,9 @@ public class EventAdapter extends BaseAdapter implements Filterable {
 			} else {
 				ArrayList<Event> filteredEvents = new ArrayList<Event>(mData);
 				String constr_str = constraint.toString();
-				Log.d("CONSTRAINT", constr_str);
 				String[] filterTypeAndValue = constr_str.split("\\|");
 				String filterType = filterTypeAndValue[0];
 				String filterValue =  filterTypeAndValue[1];
-				Log.d("FILTER TYPE AND VALUE", filterType + " " + filterValue);
 				if(filterType.equals("Category")) {
 					filteredEvents.clear();
 					for(Event e : mData) {
@@ -171,12 +168,10 @@ public class EventAdapter extends BaseAdapter implements Filterable {
 					// TODO need to filter values by location, implement comparator, see below
 				} else if (filterType.equals("Reset Filters")) {
 					loadDataFromDatabase(false);
-					Log.d("MDATA TEST", mData.toString());
 					filteredEvents = new ArrayList<Event>(mData);
 				}
 				result.values = filteredEvents;
 				result.count = filteredEvents.size();
-				Log.d("RESULTS VALUES", filteredEvents.toString());
 			}
 			return result;
 		}
@@ -188,7 +183,6 @@ public class EventAdapter extends BaseAdapter implements Filterable {
 		protected void publishResults(CharSequence constraint,
 				FilterResults results) {
 			mData = (ArrayList<Event>) results.values;
-			Log.d("MDATA", mData.toString());
 			notifyDataSetChanged();
 		}
 	}
