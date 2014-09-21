@@ -31,5 +31,12 @@
         <item>By Date</item>
         <item>Closest to Me</item>
     </string-array>
+    <string name="request_nashville_addr">Please Enter an address in Nashville, TN</string>
+    <string name="request_street">Please Enter a street name and number</string>
+    <string name="country">United States</string>
+    <string name="state">Tennessee</string>
+    <string name="city">Nashville</string>
+    <string name="wait">Please Wait</string>
+    <string name="verifying">Verifying address.....</string>
 
 </resources>
