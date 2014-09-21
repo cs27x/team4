@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import com.example.nashvilleeventcalendar.R;
 
@@ -32,11 +33,16 @@ public class EventListActivity extends Activity
      */
     private boolean mTwoPane;
     public static boolean filtered = false;
+    private Button addEventButton;
+    private Button filterEventButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_list);
+        addEventButton = (Button)findViewById(R.id.add_event_button);
+        filterEventButton = (Button)findViewById(R.id.filter_event_button);
+        addClickListeners();
 
         if (findViewById(R.id.event_detail_container) != null) {
             // The detail container view will be present only in the
@@ -51,6 +57,25 @@ public class EventListActivity extends Activity
                     .findFragmentById(R.id.event_list))
                     .setActivateOnItemClick(true);
         }
+    }
+    
+    private void addClickListeners() {
+    	addEventButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+	        	Intent intent = new Intent(v.getContext(), AddEventActivity.class);
+	        	startActivity(intent);
+			}
+		});
+        
+    	filterEventButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+	        	filtered = true;
+	        	Intent intent = new Intent(v.getContext(), FilterEventListActivity.class);
+	        	startActivity(intent);
+			}
+		});
     }
 
     /**
@@ -77,16 +102,5 @@ public class EventListActivity extends Activity
             detailIntent.putExtra(EventDetailFragment.ARG_EVENT_INDEX, index);
             startActivity(detailIntent);
         }
-    }
-    
-    public void addEventButtonClick(View view) {
-    	Intent intent = new Intent(this, AddEventActivity.class);
-    	startActivity(intent);
-    }
-    
-    public void filterEventButtonClick(View view) {
-    	filtered = true;
-    	Intent intent = new Intent(this, FilterEventListActivity.class);
-    	startActivity(intent);
     }
 }

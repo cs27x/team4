@@ -5,9 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import com.example.nashvilleeventcalendar.R;
 
@@ -22,8 +19,6 @@ import com.example.nashvilleeventcalendar.R;
  * more than a {@link EventDetailFragment}.
  */
 public class EventDetailActivity extends Activity {
-	private EventAdapter adapter;
-	private Event curEvent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +40,6 @@ public class EventDetailActivity extends Activity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
         	int eventIndex = getIntent().getIntExtra(EventDetailFragment.ARG_EVENT_INDEX, 0);
-        	adapter = EventAdapter.getInstance(this);
-        	curEvent = adapter.getItem(eventIndex);
             Bundle arguments = new Bundle();
             arguments.putInt(EventDetailFragment.ARG_EVENT_INDEX, eventIndex);
             EventDetailFragment fragment = new EventDetailFragment();
@@ -65,16 +58,5 @@ public class EventDetailActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-    
-    public void goingToEventButtonClick(View view) {
-    	((Button)view).setEnabled(false);
-    	curEvent.anotherUserGoing();
-    	((TextView)((View)view.getParent()).findViewById(R.id.event_detail_num_people))
-    		.setText(Integer.toString(curEvent.numberGoing));
-    	
-    	// TODO add database logic to increment number of people going
-    	
-    	adapter.notifyDataSetChanged();    	
     }
 }
