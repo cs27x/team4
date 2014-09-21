@@ -9,6 +9,8 @@ import java.util.Locale;
 import android.util.Log;
 
 public class Event {
+	private static String log_class;
+	
     public String id;
     public String title;
     public String address;
@@ -22,6 +24,7 @@ public class Event {
     // Date String must be in format "M/d/yyyy h:mm AM or PM"
     // "month/day/4-digit-year hour:minute AM-or-PM"
     public Event(String id, String title, String address, String description, String dateTime, String category) {
+    	log_class = this.getClass().getSimpleName();
         this.id = id;
         this.title = title;
         this.address = address;
@@ -36,12 +39,12 @@ public class Event {
     	this(id, title, address, description, sdf.format(dateTime.getTime()), category);
     }
     
-    public Date getDateFromString(String dateTime) {
+    public static Date getDateFromString(String dateTime) {
     	Date date = null;
     	try {
 			date = sdf.parse(dateTime);
 		} catch (ParseException e) {
-			Log.d(this.getClass().getSimpleName(), "Failure parsing the date and time.");
+			Log.d(log_class, "Failure parsing the date and time.");
 			e.printStackTrace();
 		} 
     	return date;

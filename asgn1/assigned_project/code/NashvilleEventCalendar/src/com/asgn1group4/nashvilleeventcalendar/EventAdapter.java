@@ -1,21 +1,25 @@
 package com.asgn1group4.nashvilleeventcalendar;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import com.example.nashvilleeventcalendar.R;
 
-public class EventAdapter extends BaseAdapter {
+public class EventAdapter extends BaseAdapter implements Filterable {
 	private static EventAdapter instance = null;
 	private LayoutInflater mInflate;
 	private Context mContext;
 	private ArrayList<Event> mData;
+	private EventFilter eventFilter;
 	
     public ArrayList<String> categories = new ArrayList<String>();
 	
@@ -29,6 +33,7 @@ public class EventAdapter extends BaseAdapter {
 		this.mContext = context;
 		mInflate = (LayoutInflater) this.mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		this.mData = new ArrayList<Event>();
+		getFilter();
 		initializePossibleCategories();
 		loadData();
 	}
@@ -108,5 +113,62 @@ public class EventAdapter extends BaseAdapter {
 	public void addEvent(Event newEvent) {
 		this.mData.add(newEvent);
 		this.notifyDataSetChanged();
+	}
+
+	@Override
+	public Filter getFilter() {
+		if(eventFilter==null)
+			eventFilter = new EventFilter();
+		return eventFilter;
+	}
+	
+	private class EventFilter extends Filter {
+
+		@Override
+		protected FilterResults performFiltering(CharSequence constraint) {
+			FilterResults result = new FilterResults();
+			if(constraint.length() == 0) {
+				result.values = mData;
+				result.count = mData.size();
+			} else {
+				ArrayList<Event> filteredEvents = new ArrayList<Event>();
+				String constr_str = constraint.toString();
+				String[] filterTypeAndValue = constr_str.split("|");
+				String filterType = filterTypeAndValue[0];
+				String filterValue =  filterTypeAndValue[1];
+				if(filterType.equals("Category")) {
+					for(Event e : mData) {
+						if(e.category.equals(filterValue))
+							filteredEvents.add(e);
+					}
+				} else if (filterType.equals("Date")) {
+					Calendar dateToCompare = Calendar.getInstance();
+					dateToCompare.setTime(Event.getDateFromString(filterValue));
+					for(Event e : mData) {
+						if(e.dateTime.get(Calendar.YEAR) == dateToCompare.get(Calendar.YEAR) 
+								&& e.dateTime.get(Calendar.DAY_OF_YEAR) == dateToCompare.get(Calendar.DAY_OF_YEAR)) {
+							filteredEvents.add(e);
+						}
+					}
+				} else if (filterType.equals("Location")) {
+					// TODO need to filter values by location
+				} else {
+					result.values = mData;
+					result.count = mData.size();
+				}
+			}
+			return result;
+		}
+
+		// I know I'm going to have an ArrayList of events so supressing warning
+		// rather than dealing with an ArrayList<?>
+		@SuppressWarnings("unchecked")
+		@Override
+		protected void publishResults(CharSequence constraint,
+				FilterResults results) {
+			mData = (ArrayList<Event>) results.values;
+			notifyDataSetChanged();
+		}
+		
 	}
 }
