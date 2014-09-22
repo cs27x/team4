@@ -74,7 +74,7 @@ the relative location of all of them on the map of Nashville (2 hrs)
    
 ## Evaluation Rubrics
 
-There are 375 total points for this application. The breakdown of these points to
+There are 290 total points for this application. The breakdown of these points to
 user stories is as follows:
 
 0. (20pts) - As a tourist, I want to see a list of all historical markers so I can view interesting
@@ -166,7 +166,7 @@ user stories is as follows:
       where it is downloading data from nashville.data.gov. If it is not downloading
       data from data.nashville.gov, award 0pts, otherwise award 20pts. 
       
-8. (50pts) - Uses a consistent code style and applies Java best practices - Evaluation process:
+8. (45pts) - Uses a consistent code style and applies Java best practices - Evaluation process:
    - Checkout the source code for the application 
    - If all classes are in packages with full lower case names, no non-alphanumeric 
      characters, and at least 2 dotted package components (e.g., "com.foo" vs. just "com"),
@@ -175,8 +175,6 @@ user stories is as follows:
      via getter/setter methods, award 5pts.
    - If all class names are title cased, award 5pts.
    - If all classes have the same variable naming / spacing scheme, award 5pts.
-   - If all methods have been broken up into code chunks of 15 lines or less, award
-     5pts
    - If all constants are with full upper case names, award 5pts.
    - If class members are ordered by scope, award 5pts.
    - If no empty catch blocks that suppress exceptions, award 10pts.
