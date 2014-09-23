@@ -12,7 +12,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 
-import com.example.nashvilleeventcalendar.R;
+import com.asgn1group4.nashvilleeventcalendar.R;
 
 public class AddEventActivity extends Activity {
 	private EventAdapter adapter = EventAdapter.getInstance(this);
@@ -72,13 +72,15 @@ public class AddEventActivity extends Activity {
 
 	private void addValidNewEvent() {
 		// TODO get next valid id from Scheme to use for new event, replace line below.
+		
 		String id = Integer.toString(adapter.getCount());
 		
 		Event newEvent = new Event(id, newEventTitle, newEventLocation, newEventDescription,
 				newEventDateTime, newEventCategory);
 		adapter.addEvent(newEvent);
 		
-    	// TODO add necessary code to add the new event to Scheme
+    	// add necessary code to add the new event to Scheme
+		newEvent.saveInBackground();
 	}
     
     private View getViewWithErrorIfThereIsOne() {

@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.nashvilleeventcalendar.R;
+import com.asgn1group4.nashvilleeventcalendar.R;
 
 /**
  * An activity representing a list of Events. This activity

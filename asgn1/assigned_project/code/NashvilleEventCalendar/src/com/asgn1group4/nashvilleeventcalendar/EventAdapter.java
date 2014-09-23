@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 import android.content.Context;
 import android.util.Log;
@@ -15,7 +16,8 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
 
-import com.example.nashvilleeventcalendar.R;
+import com.asgn1group4.nashvilleeventcalendar.R;
+import com.parse.*;
 
 public class EventAdapter extends BaseAdapter implements Filterable {
 	private static EventAdapter instance = null;
@@ -54,12 +56,26 @@ public class EventAdapter extends BaseAdapter implements Filterable {
 		categories.add("Networking");
 	}
 	
-	// TODO needs implemented to get the data from the database when the app opens.
+
 	public void loadDataFromDatabase(boolean update_view) {
 		mData.clear();
-		// Need database to handle the event id
+		// Need database to handle the event id -- discuss
 		// Start events at id 0
 		
+		ParseQuery<Event> query = ParseQuery.getQuery("Event");
+		query.setLimit(100); //returns list of 100, max is 1000
+		query.findInBackground(new FindCallback<Event>() {
+		    public void done(List<Event> eventList, ParseException e) {
+		        if (e == null) {
+		            mData.addAll(eventList);
+		            notifyDataSetChanged();
+		        } else {
+		            Log.e("eventList", "Error: " + e.getMessage());
+		        }
+		    }
+		});
+		
+		/*
 		// id, title, address, description, dateTime, category
 		mData.add(new Event("0", "Event0", "123 Road Rd Nashville, TN 37235", "Stuff stuff stuff Stuff stuff stuff Stuff stuff stuff Stuff " +
 				"stuff stuff Stuff stuff stuff Stuff stuff stuff Stuff stuff stuff Stuff stuff stuff Stuff stuff stuff Stuff stuff stuff",
@@ -75,13 +91,19 @@ public class EventAdapter extends BaseAdapter implements Filterable {
 		mData.add(new Event("9", "Event9", "111 Road Rd Nashville, TN 37235", "Send-off party.", "1/2/2015 8:30 PM", "Parties"));
 		mData.add(new Event("10", "Event10", "678 Road Rd Nashville, TN 37235", "Graduation party", "10/22/2014 10:00 AM", "Parties"));
 		mData.add(new Event("11", "Event11", "999 Road Rd Nashville, TN 37235", "Trash pickup party", "12/19/2014 11:30 AM", "Community"));
+		
+		}
+		*/
+		for(Event curEvent: mData) {
+			Log.e("eventLis2t", curEvent.toString());
+		}
 		if(update_view)
 			this.notifyDataSetChanged();
 	}
 	
 	public void updateData() {
 		//TODO update the data from the database, remove following line
-		//loadDataFromDatabase();
+		//loadDataFromDatabase(true);
 		
 		this.notifyDataSetChanged();
 	}
@@ -98,7 +120,7 @@ public class EventAdapter extends BaseAdapter implements Filterable {
 
 	@Override
 	public long getItemId(int position) {
-		return Long.parseLong(mData.get(position).id);
+		return Long.parseLong(mData.get(position).getString("evid"));
 	}
 
 	@Override
@@ -107,16 +129,16 @@ public class EventAdapter extends BaseAdapter implements Filterable {
 			convertView = this.mInflate.inflate(R.layout.list_event_layout, parent, false);
 		}
 		Event curEvent = getItem(position);
-		((TextView)convertView.findViewById(R.id.event_title)).setText(curEvent.title);
-		((TextView)convertView.findViewById(R.id.event_description)).setText(curEvent.description);
-		((TextView)convertView.findViewById(R.id.event_category)).setText("Category: " + curEvent.category);
+		((TextView)convertView.findViewById(R.id.event_title)).setText(curEvent.getString("title"));
+		((TextView)convertView.findViewById(R.id.event_description)).setText(curEvent.getString("description"));
+		((TextView)convertView.findViewById(R.id.event_category)).setText("Category: " + curEvent.getString("category"));
 		((TextView)convertView.findViewById(R.id.event_num_people)).setText("People going: " 
-				+ Integer.toString(curEvent.numberGoing));
+				+ Integer.toString(curEvent.getInt("numberGoing")));
 		((TextView)convertView.findViewById(R.id.event_date_time)).setText(curEvent.getFormattedDateTimeString());
 		return convertView;
 	}
 	
-	public void addEvent(Event newEvent) {
+	public void addEvent(Event newEvent) { //TODO is this necessary? -Taylor
 		this.mData.add(newEvent);
 		this.notifyDataSetChanged();
 	}
@@ -146,7 +168,7 @@ public class EventAdapter extends BaseAdapter implements Filterable {
 				if(filterType.equals("Category")) {
 					filteredEvents.clear();
 					for(Event e : mData) {
-						if(e.category.equals(filterValue))
+						if(e.getString("category").equals(filterValue))
 							filteredEvents.add(e);
 					}
 				} else if (filterType.equals("By Date")) {
@@ -154,8 +176,8 @@ public class EventAdapter extends BaseAdapter implements Filterable {
 					Calendar dateToCompare = Calendar.getInstance();
 					dateToCompare.setTime(Event.getDateFromString(filterValue));
 					for(Event e : mData) {
-						if(e.dateTime.get(Calendar.YEAR) == dateToCompare.get(Calendar.YEAR) 
-								&& e.dateTime.get(Calendar.DAY_OF_YEAR) == dateToCompare.get(Calendar.DAY_OF_YEAR)) {
+						if(e.getCal().get(Calendar.YEAR) == dateToCompare.get(Calendar.YEAR) 
+								&& e.getCal().get(Calendar.DAY_OF_YEAR) == dateToCompare.get(Calendar.DAY_OF_YEAR)) {
 							filteredEvents.add(e);
 						}
 					}
@@ -192,7 +214,7 @@ public class EventAdapter extends BaseAdapter implements Filterable {
 		// 0 if they are equal, and > 0 if event1 val is greater than event2 val
 		@Override
 		public int compare(Event event1, Event event2) {
-			return event2.numberGoing - event1.numberGoing;
+			return event2.getInt("numberGoing") - event1.getInt("numberGoing");
 		}
 	}
 	
