@@ -13,7 +13,7 @@ import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 
-import com.example.nashvilleeventcalendar.R;
+import com.asgn1group4.nashvilleeventcalendar.R;
 
 public class FilterEventListActivity extends Activity {
 	private EventAdapter adapter;

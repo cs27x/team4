@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.nashvilleeventcalendar.R;
+import com.asgn1group4.nashvilleeventcalendar.R;
 
 /**
  * A fragment representing a single Event detail screen.
@@ -56,12 +56,12 @@ public class EventDetailFragment extends Fragment {
 
         // Show the dummy content as text in a TextView.
         if (mEvent != null) {
-            ((TextView) rootView.findViewById(R.id.event_detail_title)).setText(mEvent.title);
-            ((TextView) rootView.findViewById(R.id.event_detail_category)).setText(mEvent.category);
-            ((TextView) rootView.findViewById(R.id.event_detail_location)).setText(mEvent.address);
+            ((TextView) rootView.findViewById(R.id.event_detail_title)).setText(mEvent.getString("title"));
+            ((TextView) rootView.findViewById(R.id.event_detail_category)).setText(mEvent.getString("category"));
+            ((TextView) rootView.findViewById(R.id.event_detail_location)).setText(mEvent.getString("address"));
             ((TextView) rootView.findViewById(R.id.event_detail_date_time)).setText(mEvent.getFormattedDateTimeString());
-            ((TextView) rootView.findViewById(R.id.event_detail_num_people)).setText(Integer.toString(mEvent.numberGoing));
-            ((TextView) rootView.findViewById(R.id.event_detail_description)).setText(mEvent.description);
+            ((TextView) rootView.findViewById(R.id.event_detail_num_people)).setText(Integer.toString(mEvent.getInt("numberGoing")));
+            ((TextView) rootView.findViewById(R.id.event_detail_description)).setText(mEvent.getString("description"));
         }
         personToEventButton = (Button)rootView.findViewById(R.id.going_to_event_button);
         addClickListener(rootView);
@@ -76,9 +76,9 @@ public class EventDetailFragment extends Fragment {
 				personToEventButton.setEnabled(false);
 				mEvent.anotherUserGoing();
 		    	((TextView)((View)v.getParent()).findViewById(R.id.event_detail_num_people))
-	    		.setText(Integer.toString(mEvent.numberGoing));
+	    		.setText(Integer.toString(mEvent.getInt("numberGoing")));
 	    	
-		    	// TODO add database logic to increment number of people going
+		    	// database logic to increment number of people going is within Event.anotherUserGoing()
 		    	
 		    	adapter.notifyDataSetChanged();  
 			}
