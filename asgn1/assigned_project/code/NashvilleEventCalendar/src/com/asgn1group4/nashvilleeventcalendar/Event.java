@@ -18,16 +18,7 @@ import android.util.Log;
 @ParseClassName("Event")
 public class Event extends ParseObject {
 	private static String log_class;
-	/*
-    public String evid;
-    public String title;
-    public String address;
-    public String description;
-    public Calendar dateTime; 
-    public String category;
-    public int numberGoing;
-	*/
-	
+		
     public static SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy h:mm aaa", Locale.US);
     
     //default constructor required by Parse
@@ -39,18 +30,7 @@ public class Event extends ParseObject {
     // "month/day/4-digit-year hour:minute AM-or-PM"
     public Event(String id, String title, String address, String description, String dateTime, String category) {
     	log_class = this.getClass().getSimpleName();
-    	/*
-    	this.evid = id;
-        this.title = title;
-        this.address = address;
-        this.description = description;
-        this.dateTime = Calendar.getInstance();
-        this.dateTime.setTime(getDateFromString(dateTime));
-        this.category = category;
-        this.numberGoing = 0;
-        */
     	
-        //parse side:
         put("evid", id);
         put("title", title);
         put("address", address);
@@ -84,9 +64,6 @@ public class Event extends ParseObject {
 	}
     
     public void anotherUserGoing(){
-    	//++this.numberGoing;
-    	
-    	//parse side:
     	int numberGoing = getInt("numberGoing");
     	put("numberGoing", ++numberGoing);
     	this.saveInBackground();

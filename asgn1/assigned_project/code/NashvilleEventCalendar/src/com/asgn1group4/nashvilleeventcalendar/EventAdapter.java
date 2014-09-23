@@ -75,28 +75,6 @@ public class EventAdapter extends BaseAdapter implements Filterable {
 		    }
 		});
 		
-		/*
-		// id, title, address, description, dateTime, category
-		mData.add(new Event("0", "Event0", "123 Road Rd Nashville, TN 37235", "Stuff stuff stuff Stuff stuff stuff Stuff stuff stuff Stuff " +
-				"stuff stuff Stuff stuff stuff Stuff stuff stuff Stuff stuff stuff Stuff stuff stuff Stuff stuff stuff Stuff stuff stuff",
-				"12/25/2014 9:00 AM", "Other"));
-		mData.add(new Event("1", "Event1", "123 Road Rd Nashville, TN 37235", "Such event! Much fun! Wow!", "9/21/2014 5:00 PM", "Arts"));
-		mData.add(new Event("2", "Event2", "111 Road Rd Nashville, TN 37235", "Get together and such.", "10/2/2014 11:00 PM", "Networking"));
-		mData.add(new Event("3", "Event3", "555 Road Rd Nashville, TN 37235", "Birthday party!", "9/21/2014 9:00 AM", "Community"));
-		mData.add(new Event("4", "Event4", "554 Road Rd Nashville, TN 37235", "Board game night.", "10/20/2014 10:00 PM", "Classes"));
-		mData.add(new Event("5", "Event5", "553 Road Rd Nashville, TN 37235", "LAN party.", "11/1/2014 9:00 AM", "Other"));
-		mData.add(new Event("6", "Event6", "552 Road Rd Nashville, TN 37235", "Coding challenge.", "10/30/2014 8:00 PM", "Technical"));
-		mData.add(new Event("7", "Event7", "551 Road Rd Nashville, TN 37235", "Interviews for positions.", "10/30/2014 11:00 AM", "Networking"));
-		mData.add(new Event("8", "Event8", "55 Road Rd Nashville, TN 37235", "Hangout together.", "1/1/2015 9:00 PM", "Food and Drink"));
-		mData.add(new Event("9", "Event9", "111 Road Rd Nashville, TN 37235", "Send-off party.", "1/2/2015 8:30 PM", "Parties"));
-		mData.add(new Event("10", "Event10", "678 Road Rd Nashville, TN 37235", "Graduation party", "10/22/2014 10:00 AM", "Parties"));
-		mData.add(new Event("11", "Event11", "999 Road Rd Nashville, TN 37235", "Trash pickup party", "12/19/2014 11:30 AM", "Community"));
-		
-		}
-		*/
-		for(Event curEvent: mData) {
-			Log.e("eventLis2t", curEvent.toString());
-		}
 		if(update_view)
 			this.notifyDataSetChanged();
 	}
