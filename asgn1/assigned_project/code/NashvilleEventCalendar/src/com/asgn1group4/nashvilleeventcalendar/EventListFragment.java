@@ -67,7 +67,7 @@ public class EventListFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        eventAdapter = EventAdapter.getInstance(this.getActivity().getApplicationContext());
+        eventAdapter = EventAdapter.getInstance(this.getActivity().getApplicationContext(), this.getActivity());
         setListAdapter(eventAdapter);
     }
     
@@ -151,3 +151,4 @@ public class EventListFragment extends ListFragment {
         mActivatedPosition = position;
     }
 }
+

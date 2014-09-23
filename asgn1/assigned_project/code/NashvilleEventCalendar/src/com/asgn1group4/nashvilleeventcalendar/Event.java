@@ -18,12 +18,14 @@ public class Event {
     public Calendar dateTime; 
     public String category;
     public int numberGoing;
+    public double latitude;
+    public double longitude;
 
     public static SimpleDateFormat sdf = new SimpleDateFormat("M/d/yyyy h:mm aaa", Locale.US);
     
     // Date String must be in format "M/d/yyyy h:mm AM or PM"
     // "month/day/4-digit-year hour:minute AM-or-PM"
-    public Event(String id, String title, String address, String description, String dateTime, String category) {
+    public Event(String id, String title, String address, String description, String dateTime, String category, double latitude, double longitude) {
     	log_class = this.getClass().getSimpleName();
         this.id = id;
         this.title = title;
@@ -33,10 +35,12 @@ public class Event {
         this.dateTime.setTime(getDateFromString(dateTime));
         this.category = category;
         this.numberGoing = 0;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
     
-    public Event(String id, String title, String address, String description, Calendar dateTime, String category) {
-    	this(id, title, address, description, sdf.format(dateTime.getTime()), category);
+    public Event(String id, String title, String address, String description, Calendar dateTime, String category, double latitude, double longitude) {
+    	this(id, title, address, description, sdf.format(dateTime.getTime()), category, latitude, longitude);
     }
     
     public static Date getDateFromString(String dateTime) {
