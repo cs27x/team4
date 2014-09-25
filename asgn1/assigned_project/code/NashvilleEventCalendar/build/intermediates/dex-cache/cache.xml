@@ -2,34 +2,28 @@
 <pre-dex-items>
 
     <item
-        dex="/Users/violettavylegzhanina/AndroidStudioProjects/NashvilleEventCalendar/app/build/intermediates/pre-dexed/debug/internal_impl-20.0.0-6ab7325019fca5c58b38f11fb2b2881c2e21c6c9.jar"
-        jar="/Users/violettavylegzhanina/AndroidStudioProjects/NashvilleEventCalendar/app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/libs/internal_impl-20.0.0.jar"
+        dex="C:\Users\Alex\Downloads\Vanderbilt\Senior\Fall\CS-278 S.E\Git_Repo\team4\asgn1\assigned_project\code\NashvilleEventCalendar\app\build\intermediates\pre-dexed\debug\support-annotations-20.0.0-bab26a85db10fdf51a5bd499a182514bd4080ed4.jar"
+        jar="C:\Users\Alex\AppData\Local\Android\android-studio\sdk\extras\android\m2repository\com\android\support\support-annotations\20.0.0\support-annotations-20.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="9d9013e9ff35fc3756411e62873c363c70c638fa"/>
+    <item
+        dex="C:\Users\Alex\Downloads\Vanderbilt\Senior\Fall\CS-278 S.E\Git_Repo\team4\asgn1\assigned_project\code\NashvilleEventCalendar\app\build\intermediates\pre-dexed\debug\internal_impl-20.0.0-2bb847328bbf376a109d563bcd99ddb5d234200a.jar"
+        jar="C:\Users\Alex\Downloads\Vanderbilt\Senior\Fall\CS-278 S.E\Git_Repo\team4\asgn1\assigned_project\code\NashvilleEventCalendar\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\libs\internal_impl-20.0.0.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d"/>
     <item
-        dex="/Users/violettavylegzhanina/AndroidStudioProjects/NashvilleEventCalendar/app/build/intermediates/pre-dexed/debug/classes-1e12f08e95765f68fd7e7f7354113157437cc683.jar"
-        jar="/Users/violettavylegzhanina/AndroidStudioProjects/NashvilleEventCalendar/app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/classes.jar"
+        dex="C:\Users\Alex\Downloads\Vanderbilt\Senior\Fall\CS-278 S.E\Git_Repo\team4\asgn1\assigned_project\code\NashvilleEventCalendar\app\build\intermediates\pre-dexed\debug\Parse-1.6.0-47c9febb286170e85aa6338d332eee63e4e9c32a.jar"
+        jar="C:\Users\Alex\Downloads\Vanderbilt\Senior\Fall\CS-278 S.E\Git_Repo\team4\asgn1\assigned_project\code\NashvilleEventCalendar\app\libs\Parse-1.6.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="2a812174191af5a4513a873602a765b0171f252c"/>
+    <item
+        dex="C:\Users\Alex\Downloads\Vanderbilt\Senior\Fall\CS-278 S.E\Git_Repo\team4\asgn1\assigned_project\code\NashvilleEventCalendar\app\build\intermediates\pre-dexed\debug\classes-1ba0d44f86beba1923eac81d51eab40a22e5b31a.jar"
+        jar="C:\Users\Alex\Downloads\Vanderbilt\Senior\Fall\CS-278 S.E\Git_Repo\team4\asgn1\assigned_project\code\NashvilleEventCalendar\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\classes.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="8694693636ab36910c8100ce527c258ff3ebece0"/>
-    <item
-        dex="/Users/violettavylegzhanina/AndroidStudioProjects/NashvilleEventCalendar/app/build/intermediates/pre-dexed/debug/Parse-1.4.3-51aa50f4cfeca7d947cbc336cac1cf94e80d9dbe.jar"
-        jar="/Users/violettavylegzhanina/AndroidStudioProjects/NashvilleEventCalendar/app/libs/Parse-1.4.3.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="8daf146aea8cd5245bb90f802f2cd4b8dd855eca"/>
-    <item
-        dex="/Users/violettavylegzhanina/AndroidStudioProjects/NashvilleEventCalendar/app/build/intermediates/pre-dexed/debug/google-play-services-8e8052b9a125e8c2bf1d97394d585b8fdce90091.jar"
-        jar="/Users/violettavylegzhanina/AndroidStudioProjects/NashvilleEventCalendar/app/libs/google-play-services.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="be555ed84d38d5d761d827a6c94ae5485692dba2"/>
-    <item
-        dex="/Users/violettavylegzhanina/AndroidStudioProjects/NashvilleEventCalendar/app/build/intermediates/pre-dexed/debug/support-annotations-20.0.0-bca9cd8c8082330ef7549e0398af852faae531fd.jar"
-        jar="/Applications/Android Studio.app/sdk/extras/android/m2repository/com/android/support/support-annotations/20.0.0/support-annotations-20.0.0.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="9d9013e9ff35fc3756411e62873c363c70c638fa"/>
 
 </pre-dex-items>
