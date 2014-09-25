@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Nashville Event Calendar</string>
+    <string name="title_event_detail">Event Information</string>
+    <string name="empty">Empty</string>
+    <string name="add_event_string">Add Event</string>
+    <string name="going_to_event_string">I\'m going!</string>
+    <string name="title_activity_add_event">Add Event</string>
+    <string name="hint_event_title">Event Title</string>
+    <string name="hint_event_location">Event Location Address</string>
+    <string name="hint_event_description">Event Description</string>
+    <string name="hint_event_date_time">Event Date and Time</string>
+    <string name="hint_event_category">Event Category</string>
+    <string name="category">Category:</string>
+    <string name="where">Where:</string>
+    <string name="when">When:</string>
+    <string name="people_going">People going:</string>
+    <string name="description">Description:</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="not_a_valid_address">This is an invalid address</string>
+    <string name="request_nashville_addr">Please Enter an address in Nashville, TN</string>
+    <string name="request_street">Please Enter a street name and number</string>
+    <string name="country">United States</string>
+    <string name="state">Tennessee</string>
+    <string name="city">Nashville</string>
+    <string name="wait">Please Wait.....</string>
+    <string name="verifying">Verifying address.....</string>
+    <string name="filter_events">Filter Events</string>
+    <string name="filter_event_activity_title">Filter Events</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="done_string">Done</string>
+    <string name="gps_not_enabled">GPS is not enabled</string>
+    <string name="want_enable_gps">Do you want to go to the settings menu to enable GPS?</string>
+    <string name="settings">Settings</string>
+    <string name="cancel">Cancel</string>
+    <string name="msg">There was a problem. Please try again.</string>
+    <string name="retrieving_loc">Retrieving Location</string>
+    
+    <string-array name="filter_options">
+        <item>Reset Filters</item>
+        <item>Category</item>
+        <item>People Going</item>
+        <item>By Date</item>
+        <item>Closest to Me</item>
+    </string-array>
+
+</resources>
