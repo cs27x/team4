@@ -99,6 +99,7 @@ public class AddEventActivity extends Activity {
 		
     	// add necessary code to add the new event to Scheme
 		newEvent.saveInBackground();
+        finish();
 	}
     
     private View getViewWithErrorIfThereIsOne() {
@@ -232,7 +233,6 @@ public class AddEventActivity extends Activity {
  				Log.d(TAG, longitude+"");
  				
  				addValidNewEvent();
- 				finish();
  			}
  		}
  	}
