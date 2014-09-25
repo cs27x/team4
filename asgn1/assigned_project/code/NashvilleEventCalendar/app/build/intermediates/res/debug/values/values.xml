@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- From: file:/Users/violettavylegzhanina/AndroidStudioProjects/NashvilleEventCalendar/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/Alex/Downloads/Vanderbilt/Senior/Fall/CS-278%20S.E/Git_Repo/team4/asgn1/assigned_project/code/NashvilleEventCalendar/app/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string-array name="filter_options">
@@ -11,12 +11,12 @@
         <item>By Date</item>
         <item>Closest to Me</item>
     </string-array>
-    <!-- From: file:/Users/violettavylegzhanina/AndroidStudioProjects/NashvilleEventCalendar/app/src/main/res/values/dimens.xml -->
+    <!-- From: file:/C:/Users/Alex/Downloads/Vanderbilt/Senior/Fall/CS-278%20S.E/Git_Repo/team4/asgn1/assigned_project/code/NashvilleEventCalendar/app/src/main/res/values/dimens.xml -->
     <eat-comment />
 
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-    <!-- From: file:/Users/violettavylegzhanina/AndroidStudioProjects/NashvilleEventCalendar/app/src/main/res/values/strings.xml -->
+    <!-- From: file:/C:/Users/Alex/Downloads/Vanderbilt/Senior/Fall/CS-278%20S.E/Git_Repo/team4/asgn1/assigned_project/code/NashvilleEventCalendar/app/src/main/res/values/strings.xml -->
     <eat-comment />
 
     <string name="add_event_string">Add Event</string>
@@ -54,7 +54,7 @@
     <string name="want_enable_gps">Do you want to go to the settings menu to enable GPS?</string>
     <string name="when">When:</string>
     <string name="where">Where:</string>
-    <!-- From: file:/Users/violettavylegzhanina/AndroidStudioProjects/NashvilleEventCalendar/app/src/main/res/values/styles.xml -->
+    <!-- From: file:/C:/Users/Alex/Downloads/Vanderbilt/Senior/Fall/CS-278%20S.E/Git_Repo/team4/asgn1/assigned_project/code/NashvilleEventCalendar/app/src/main/res/values/styles.xml -->
     <eat-comment />
 
     <style name="AppBaseTheme" parent="android:Theme.Light">

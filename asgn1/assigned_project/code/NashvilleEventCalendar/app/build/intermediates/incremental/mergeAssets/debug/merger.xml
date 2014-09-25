@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merger version="2" >
 
-    <dataSet config="21.0.0-rc1" >
-        <source path="/Users/violettavylegzhanina/AndroidStudioProjects/NashvilleEventCalendar/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0-rc1/assets" />
+    <dataSet config="20.0.0" >
+        <source path="C:\Users\Alex\Downloads\Vanderbilt\Senior\Fall\CS-278 S.E\Git_Repo\team4\asgn1\assigned_project\code\NashvilleEventCalendar\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\assets" />
     </dataSet>
     <dataSet config="main" >
-        <source path="/Users/violettavylegzhanina/AndroidStudioProjects/NashvilleEventCalendar/app/src/main/assets" />
+        <source path="C:\Users\Alex\Downloads\Vanderbilt\Senior\Fall\CS-278 S.E\Git_Repo\team4\asgn1\assigned_project\code\NashvilleEventCalendar\app\src\main\assets" />
     </dataSet>
     <dataSet config="debug" >
-        <source path="/Users/violettavylegzhanina/AndroidStudioProjects/NashvilleEventCalendar/app/src/debug/assets" />
+        <source path="C:\Users\Alex\Downloads\Vanderbilt\Senior\Fall\CS-278 S.E\Git_Repo\team4\asgn1\assigned_project\code\NashvilleEventCalendar\app\src\debug\assets" />
     </dataSet>
 
 </merger>
