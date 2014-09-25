@@ -20,6 +20,6 @@ android {
 
 dependencies {
     compile 'com.android.support:support-v4:20.0.0'
-    compile files('libs/google-play-services.jar')
-    compile files('libs/Parse-1.4.3.jar')
+    compile ('com.google.android:android:4.0.1.2')
+    compile files('libs/Parse-1.6.0.jar')
 }
