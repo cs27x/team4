@@ -41,10 +41,10 @@ public class EventDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Bundle args = getArguments();
-        adapter = EventAdapter.getInstance(this.getActivity());
+        adapter = EventAdapter.getInstance(this.getActivity().getApplicationContext(), this.getActivity());
         if(args.containsKey(ARG_EVENT_INDEX)) {
         	int index = args.getInt(ARG_EVENT_INDEX);
-        	mEvent = EventAdapter.getInstance(this.getActivity().getApplicationContext())
+           	mEvent = EventAdapter.getInstance(this.getActivity().getApplicationContext(), this.getActivity())
         			.getItem(index);
         }
     }

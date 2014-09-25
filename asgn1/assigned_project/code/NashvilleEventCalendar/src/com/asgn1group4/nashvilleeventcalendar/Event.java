@@ -28,7 +28,7 @@ public class Event extends ParseObject {
     
     // Date String must be in format "M/d/yyyy h:mm AM or PM"
     // "month/day/4-digit-year hour:minute AM-or-PM"
-    public Event(String id, String title, String address, String description, String dateTime, String category) {
+    public Event(String id, String title, String address, String description, String dateTime, String category, double latitude, double longitude) {
     	log_class = this.getClass().getSimpleName();
     	
         put("evid", id);
@@ -38,12 +38,14 @@ public class Event extends ParseObject {
         put("dateTime", dateTime);
         put("category", category);
         put("numberGoing", "0");
+        put("latitude", latitude);
+        put("longitude", longitude);
         
         this.saveInBackground();
     }
     
-    public Event(String id, String title, String address, String description, Calendar dateTime, String category) {
-    	this(id, title, address, description, sdf.format(dateTime.getTime()), category);
+    public Event(String id, String title, String address, String description, Calendar dateTime, String category, double latitude, double longitude) {
+    	this(id, title, address, description, sdf.format(dateTime.getTime()), category, latitude, longitude);
     }
     
     public static Date getDateFromString(String dateTime) {

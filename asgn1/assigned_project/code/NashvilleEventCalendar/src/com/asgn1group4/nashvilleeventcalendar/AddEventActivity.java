@@ -1,10 +1,17 @@
 package com.asgn1group4.nashvilleeventcalendar;
 
+import java.io.IOException;
 import java.util.Calendar;
+import java.util.List;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
+import android.location.Address;
+import android.location.Geocoder;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
@@ -15,7 +22,12 @@ import android.widget.TimePicker;
 import com.asgn1group4.nashvilleeventcalendar.R;
 
 public class AddEventActivity extends Activity {
-	private EventAdapter adapter = EventAdapter.getInstance(this);
+	//private EventAdapter adapter = EventAdapter.getInstance(this);
+	
+	private String TAG = getClass().getSimpleName();
+	
+	private EventAdapter adapter = EventAdapter.getInstance(this, AddEventActivity.this);
+	
 	private long dayWorthOfMilliseconds = 1000 * 60 * 60 * 24;
 	
 	private EditText eventTitle;
@@ -30,6 +42,10 @@ public class AddEventActivity extends Activity {
 	private String newEventDescription;
 	private Calendar newEventDateTime;
 	private String newEventCategory;
+	private double latitude;
+	private double longitude;
+	
+	private static ProgressDialog progressDialog;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +81,8 @@ public class AddEventActivity extends Activity {
     	if(focusView != null) {
     		focusView.requestFocus();
     	} else {
+    		// verify address via GeoCoding Web Service
+    		new GeocoderTask().execute(this.newEventLocation);
     		addValidNewEvent();
     		finish();
     	}
@@ -76,7 +94,7 @@ public class AddEventActivity extends Activity {
 		String id = Integer.toString(adapter.getCount());
 		
 		Event newEvent = new Event(id, newEventTitle, newEventLocation, newEventDescription,
-				newEventDateTime, newEventCategory);
+				newEventDateTime, newEventCategory, latitude, longitude);
 		adapter.addEvent(newEvent);
 		
     	// add necessary code to add the new event to Scheme
@@ -100,24 +118,128 @@ public class AddEventActivity extends Activity {
     		eventLocation.setError(getString(R.string.error_field_required));
     		focusView = eventLocation;
     	}
-    	if(isInvalidNewAddress(this.newEventLocation)) {
-    		eventLocation.setError(getString(R.string.not_a_valid_address));
-    		focusView = eventLocation;
-    	}
+//    	if(isInvalidNewAddress(this.newEventLocation)) {
+//    		eventLocation.setError(getString(R.string.not_a_valid_address));
+//    		focusView = eventLocation;
+//    	}
     	if(TextUtils.isEmpty(this.newEventDescription)) {
     		eventDescription.setError(getString(R.string.error_field_required));
     		focusView = eventDescription;
     	}
 	    return focusView;
     }
-    
-    private boolean isInvalidNewAddress(String address) {
-    	// TODO add logic to cheeck if an address is valid
-    	return false;
-    }
+
+    // perform address validation
+ 	private View getViewWithErrorIfAddressIsWrong(List<Address> addresses) {
+
+ 		// Reset errors
+ 		this.eventLocation.setError(null);
+ 		View focusView = null;
+
+ 		if (addresses == null || addresses.size() == 0) {
+ 			// if no address is returned, the address is invalid
+ 			eventLocation.setError(getString(R.string.not_a_valid_address));
+ 			focusView = eventLocation;
+ 		} else {
+ 			// get the address
+ 			Address address = (Address) addresses.get(0);
+ 			// get necessary info to further verify the address
+ 			String country = address.getCountryName();
+ 			String state = address.getAdminArea();
+ 			String city = address.getLocality();
+ 			String street = address.getThoroughfare();
+
+ 			// verify that the address is in Nashville, TN, US
+ 			if (!(country == null && state == null && city == null)) {
+ 				
+ 				if (!(country.equals(getString(R.string.country))
+ 						&& state.equals(getString(R.string.state)) && city
+ 							.equals(getString(R.string.city)))) {
+
+ 					eventLocation
+ 							.setError(getString(R.string.request_nashville_addr));
+ 					focusView = eventLocation;
+ 				} else {
+ 					// verify that a street name and number is there
+ 					if (street == null) {
+
+ 						eventLocation
+ 								.setError(getString(R.string.request_street));
+ 						focusView = eventLocation;
+ 					}
+ 				}
+
+ 				// sometimes GeoCoder still returns an "address" but it is not valid
+ 			} else {
+ 				eventLocation.setError(getString(R.string.not_a_valid_address));
+ 				focusView = eventLocation;
+ 			}
+ 		}
+
+ 		return focusView;
+ 	}
+   
+//    private boolean isInvalidNewAddress(String address) {
+//    	// TODO add logic to check if an address is valid
+//    	return false;
+//    }
     
     private void getDateTimeFromInput() {
     	this.newEventDateTime.set(eventDate.getYear(), eventDate.getMonth(), 
     			eventDate.getDayOfMonth(), eventTime.getCurrentHour(), eventTime.getCurrentMinute());
     }
+    // An AsyncTask class for accessing the GeoCoding Web Service
+ 	private class GeocoderTask extends AsyncTask<String, Void, List<Address>> {
+
+ 		@Override
+ 		protected void onPreExecute() {
+
+ 			showProgressDialog(getString(R.string.verifying));
+ 		}
+ 		
+ 		@Override
+ 		protected List<Address> doInBackground(String... locationName) {
+
+ 			Geocoder geocoder = new Geocoder(getBaseContext());
+ 			// a list to contain a result address
+ 			List<Address> addresses = null;
+
+ 			try {
+ 				// Getting a maximum of 1 address that matches the user input
+ 				addresses = geocoder.getFromLocationName(locationName[0], 1);
+ 			} catch (IOException e) {
+ 				Log.e(TAG, "message: ", e);
+ 			}
+ 			return addresses;
+ 		}
+
+ 		@Override
+ 		protected void onPostExecute(List<Address> addresses) {
+
+ 			progressDialog.dismiss();
+ 			// verify that the address is correct
+ 			View focusView = getViewWithErrorIfAddressIsWrong(addresses);
+ 			// address is not correct
+ 			if (focusView != null) {
+ 				focusView.requestFocus();
+ 				// address is correct, so save the event
+ 			} else {
+ 				
+ 				// get latitude and longitude
+ 				latitude = addresses.get(0).getLatitude();
+ 				longitude = addresses.get(0).getLongitude();
+ 				Log.d(TAG, latitude+"");
+ 				Log.d(TAG, longitude+"");
+ 				
+ 				addValidNewEvent();
+ 				finish();
+ 			}
+ 		}
+ 	}
+ 	
+ 	private void showProgressDialog(String message) {
+
+ 		progressDialog = ProgressDialog.show(AddEventActivity.this, getString(R.string.wait),
+ 				message);
+ 	}
 }

@@ -5,8 +5,9 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-
+import android.app.Activity;
 import android.content.Context;
+import android.location.Location;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,27 +21,46 @@ import com.asgn1group4.nashvilleeventcalendar.R;
 import com.parse.*;
 
 public class EventAdapter extends BaseAdapter implements Filterable {
+
+	private String TAG = getClass().getSimpleName();
+
 	private static EventAdapter instance = null;
 	private LayoutInflater mInflate;
 	private Context mContext;
+	private Activity parentActivity;
 	private ArrayList<Event> mData;
 	private EventFilter eventFilter;
+	ArrayList<Event> filteredEvents;
+
+	private double curlatitude;
+	private double curlongitude;
 	
-    public ArrayList<String> categories = new ArrayList<String>();
+	private Location curLocation;
+
+	public ArrayList<String> categories = new ArrayList<String>();
 	
-	public static EventAdapter getInstance(Context context) {
-		if(instance == null)
-			instance = new EventAdapter(context);
+	public static EventAdapter getInstance(Context context,
+			Activity parentActivity) {
+		if (instance == null)
+			instance = new EventAdapter(context, parentActivity);
 		return instance;
 	}
 	
-	protected EventAdapter(Context context) {
+	protected EventAdapter(Context context, Activity parentActivity) {
 		this.mContext = context;
-		mInflate = (LayoutInflater) this.mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		this.parentActivity = parentActivity;
+		mInflate = (LayoutInflater) this.mContext
+				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		this.mData = new ArrayList<Event>();
 		getFilter();
 		initializePossibleCategories();
 		loadDataFromDatabase(true);
+	}
+	
+	public void setLocation(Location l){
+		Log.d(TAG, "Set Location Called");
+		Log.d(TAG, curLocation.getLatitude()+"");
+		curLocation = l;
 	}
 	
 	public void initializePossibleCategories() {
@@ -138,11 +158,12 @@ public class EventAdapter extends BaseAdapter implements Filterable {
 				result.values = mData;
 				result.count = mData.size();
 			} else {
-				ArrayList<Event> filteredEvents = new ArrayList<Event>(mData);
+				filteredEvents = new ArrayList<Event>(mData);
 				String constr_str = constraint.toString();
 				String[] filterTypeAndValue = constr_str.split("\\|");
 				String filterType = filterTypeAndValue[0];
 				String filterValue =  filterTypeAndValue[1];
+				
 				if(filterType.equals("Category")) {
 					filteredEvents.clear();
 					for(Event e : mData) {
@@ -163,9 +184,14 @@ public class EventAdapter extends BaseAdapter implements Filterable {
 					Collections.copy(filteredEvents, mData);
 					Collections.sort(filteredEvents, new PeopleGoingComparator());
 				} else if (filterType.equals("Closest to Me")) {
+
+					String[] latLon = filterValue.split("&");
+					curlatitude = Double.parseDouble(latLon[0]);
+					curlongitude = Double.parseDouble(latLon[1]);
+					
 					Collections.copy(filteredEvents, mData);
 					Collections.sort(filteredEvents, new LocationComparator());
-					// TODO need to filter values by location, implement comparator, see below
+
 				} else if (filterType.equals("Reset Filters")) {
 					loadDataFromDatabase(false);
 					filteredEvents = new ArrayList<Event>(mData);
@@ -201,8 +227,29 @@ public class EventAdapter extends BaseAdapter implements Filterable {
 		// 0 if they are equal, and > 0 if event1 val is greater than event2 val
 		@Override
 		public int compare(Event event1, Event event2) {
-			// TODO Auto-generated method stub
-			return 0;
+
+			double dist1 = distance(curlatitude, curlongitude, event1.getDouble("latitude"),
+					event1.getDouble("longitude"));
+			double dist2 = distance(curlatitude, curlongitude, event2.getDouble("latitude"),
+					event2.getDouble("longitude"));
+
+			Double diff = dist1 - dist2;
+			return diff.intValue();
 		}
+	}
+	
+
+	private static double distance(double fromLat, double fromLon,
+			double toLat, double toLon) {
+
+		double radius = 6378137;
+		double deltaLat = toLat - fromLat;
+		double deltaLon = toLon - fromLon;
+		double angle = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(deltaLat / 2),
+				2)
+				+ Math.cos(fromLat)
+				* Math.cos(toLat)
+				* Math.pow(Math.sin(deltaLon / 2), 2)));
+		return radius * angle;
 	}
 }
